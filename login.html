@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Promptify AI | Login</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            min-height: 100vh;
+
+            font-family: "Times New Roman", serif;
+
+            color: #29153d;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    #e9d8ff,
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 20%,
+                    #f7d9ff,
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #fcfaff,
+                    #f1e8ff
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           ANIMATED BACKGROUND
+        ========================= */
+
+        .background-circle {
+            position: fixed;
+
+            border-radius: 50%;
+
+            filter: blur(2px);
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        .circle-one {
+            width: 300px;
+            height: 300px;
+
+            background: rgba(150, 75, 220, 0.13);
+
+            top: 100px;
+            left: -120px;
+
+            animation: floatOne 8s infinite ease-in-out;
+        }
+
+
+        .circle-two {
+            width: 250px;
+            height: 250px;
+
+            background: rgba(220, 95, 220, 0.13);
+
+            right: -80px;
+            bottom: 100px;
+
+            animation: floatTwo 9s infinite ease-in-out;
+        }
+
+
+        @keyframes floatOne {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(40px);
+            }
+
+        }
+
+
+        @keyframes floatTwo {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-35px);
+            }
+
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 78px;
+
+            padding: 0 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background: rgba(255, 255, 255, 0.88);
+
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid #e5d7f4;
+
+            position: relative;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+            text-decoration: none;
+
+            font-family: Algerian,
+                "Times New Roman",
+                serif;
+
+            font-size: 28px;
+
+            color: #7028c7;
+        }
+
+
+        .logo span {
+            color: #b04fea;
+        }
+
+
+        .back-home {
+            text-decoration: none;
+
+            color: #5d4a69;
+
+            font-weight: bold;
+
+            padding: 10px 20px;
+
+            border-radius: 25px;
+
+            transition: 0.3s;
+        }
+
+
+        .back-home:hover {
+            color: #7028c7;
+
+            background: #f1e5ff;
+
+            transform: translateX(-3px);
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .login-container {
+
+            min-height: calc(100vh - 78px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 50px 20px;
+
+        }
+
+
+        .login-wrapper {
+
+            width: 100%;
+
+            max-width: 1050px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            background: rgba(255, 255, 255, 0.78);
+
+            border: 1px solid #e3d5f3;
+
+            border-radius: 32px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 30px 80px rgba(72, 35, 110, 0.15);
+
+            animation: appear 0.8s ease;
+
+        }
+
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+
+        /* =========================
+           LEFT SIDE
+        ========================= */
+
+        .welcome-section {
+
+            min-height: 600px;
+
+            padding: 55px;
+
+            color: white;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(224, 150, 255, 0.3),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(255, 116, 214, 0.22),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    145deg,
+                    #32104a,
+                    #57116b,
+                    #7028c7
+                );
+        }
+
+
+        .welcome-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.14);
+
+            top: -90px;
+            right: -90px;
+
+        }
+
+
+        .welcome-section::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            bottom: -70px;
+            left: -60px;
+
+        }
+
+
+        .ai-badge {
+
+            width: fit-content;
+
+            padding: 9px 17px;
+
+            border-radius: 25px;
+
+            background: rgba(255,255,255,0.1);
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 25px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .welcome-section h1 {
+
+            font-family: Algerian,
+                "Times New Roman",
+                serif;
+
+            font-size: 48px;
+
+            line-height: 1.15;
+
+            margin-bottom: 20px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .welcome-section h1 span {
+
+            color: #e7b7ff;
+
+        }
+
+
+        .welcome-text {
+
+            color: #e0cfe8;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            max-width: 430px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        /* =========================
+           BENEFITS
+        ========================= */
+
+        .benefits {
+
+            margin-top: 35px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 17px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .benefit {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            color: #f2e9f6;
+
+        }
+
+
+        .benefit-icon {
+
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: rgba(255,255,255,0.11);
+
+            border: 1px solid rgba(255,255,255,0.13);
+
+            font-size: 17px;
+
+        }
+
+
+        /* =========================
+           RIGHT LOGIN
+        ========================= */
+
+        .login-section {
+
+            background: rgba(255,255,255,0.94);
+
+            padding: 55px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+        }
+
+
+        .login-heading {
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .login-heading h2 {
+
+            font-family: Algerian,
+                "Times New Roman",
+                serif;
+
+            font-size: 34px;
+
+            margin-bottom: 9px;
+
+        }
+
+
+        .login-heading p {
+
+            color: #776a80;
+
+            font-size: 16px;
+
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+
+            margin-bottom: 21px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 9px;
+
+            font-weight: bold;
+
+            color: #392548;
+
+        }
+
+
+        .input-box {
+
+            position: relative;
+
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 16px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 18px;
+
+            opacity: 0.7;
+
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            height: 53px;
+
+            padding: 0 45px;
+
+            border-radius: 14px;
+
+            border: 1.5px solid #dfd2ed;
+
+            outline: none;
+
+            font-family: "Times New Roman", serif;
+
+            font-size: 16px;
+
+            color: #32203f;
+
+            background: #fff;
+
+            transition: 0.3s;
+
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #8a3fd1;
+
+            box-shadow:
+                0 0 0 4px rgba(138,63,209,0.09);
+
+        }
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: none;
+
+            cursor: pointer;
+
+            font-size: 17px;
+
+            opacity: 0.65;
+
+        }
+
+
+        /* =========================
+           OPTIONS
+        ========================= */
+
+        .form-options {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin: 5px 0 24px;
+
+            font-size: 14px;
+
+        }
+
+
+        .remember {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #685a72;
+
+        }
+
+
+        .remember input {
+
+            accent-color: #7028c7;
+
+        }
+
+
+        .forgot {
+
+            color: #7028c7;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+
+        .forgot:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-button {
+
+            width: 100%;
+
+            height: 54px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            color: white;
+
+            font-family: "Times New Roman", serif;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #7028c7,
+                    #a845e8,
+                    #dd58c6
+                );
+
+            box-shadow:
+                0 12px 25px rgba(112,40,199,0.24);
+
+            transition: 0.3s;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .login-button:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 16px 30px rgba(112,40,199,0.30);
+
+        }
+
+
+        .login-button:active {
+
+            transform: scale(0.98);
+
+        }
+
+
+        /* =========================
+           DIVIDER
+        ========================= */
+
+        .divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin: 25px 0;
+
+            color: #a092aa;
+
+            font-size: 14px;
+
+        }
+
+
+        .divider::before,
+        .divider::after {
+
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background: #e5dcec;
+
+        }
+
+
+        /* =========================
+           GOOGLE BUTTON
+        ========================= */
+
+        .google-button {
+
+            width: 100%;
+
+            height: 52px;
+
+            border-radius: 14px;
+
+            background: white;
+
+            border: 1.5px solid #ded2e8;
+
+            cursor: pointer;
+
+            font-family: "Times New Roman", serif;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            color: #493751;
+
+            transition: 0.3s;
+
+        }
+
+
+        .google-button:hover {
+
+            background: #faf7ff;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================
+           REGISTER
+        ========================= */
+
+        .register-text {
+
+            text-align: center;
+
+            margin-top: 28px;
+
+            color: #75687f;
+
+        }
+
+
+        .register-text a {
+
+            color: #7028c7;
+
+            font-weight: bold;
+
+            text-decoration: none;
+
+        }
+
+
+        .register-text a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =========================
+           DEMO MESSAGE
+        ========================= */
+
+        #message {
+
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            background: #eee3ff;
+
+            color: #6322a8;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 850px) {
+
+            .login-wrapper {
+
+                grid-template-columns: 1fr;
+
+                max-width: 550px;
+
+            }
+
+
+            .welcome-section {
+
+                min-height: auto;
+
+                padding: 40px;
+
+            }
+
+
+            .welcome-section h1 {
+
+                font-size: 40px;
+
+            }
+
+
+            .login-section {
+
+                padding: 40px;
+
+            }
+
+        }
+
+
+        @media(max-width: 550px) {
+
+            .navbar {
+
+                padding: 0 20px;
+
+            }
+
+
+            .back-home {
+
+                font-size: 14px;
+
+            }
+
+
+            .login-container {
+
+                padding: 25px 12px;
+
+            }
+
+
+            .welcome-section,
+            .login-section {
+
+                padding: 30px 24px;
+
+            }
+
+
+            .welcome-section h1 {
+
+                font-size: 34px;
+
+            }
+
+
+            .login-heading h2 {
+
+                font-size: 29px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="background-circle circle-one"></div>
+
+    <div class="background-circle circle-two"></div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            Promptify<span>AI</span>
+        </a>
+
+        <a href="index.html" class="back-home">
+            ← Back to Home
+        </a>
+
+    </nav>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="login-container">
+
+
+        <div class="login-wrapper">
+
+
+            <!-- ================= LEFT ================= -->
+
+            <section class="welcome-section">
+
+
+                <div class="ai-badge">
+                    ✨ Welcome Back to Promptify AI
+                </div>
+
+
+                <h1>
+                    Create.
+                    <span>Learn.</span>
+                    Grow.
+                </h1>
+
+
+                <p class="welcome-text">
+
+                    Your ideas deserve better prompts.
+                    Sign in and continue transforming
+                    simple ideas into powerful results.
+
+                </p>
+
+
+                <div class="benefits">
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ✨
+                        </div>
+
+                        <span>
+                            Create detailed AI prompts
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            📚
+                        </div>
+
+                        <span>
+                            Understand topics easily
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ⚡
+                        </div>
+
+                        <span>
+                            Get faster student-friendly results
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            💡
+                        </div>
+
+                        <span>
+                            Turn simple ideas into powerful outputs
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- ================= LOGIN ================= -->
+
+            <section class="login-section">
+
+
+                <div class="login-heading">
+
+                    <h2>
+                        Login
+                    </h2>
+
+                    <p>
+                        Enter your details to continue.
+                    </p>
+
+                </div>
+
+
+                <form onsubmit="loginUser(event)">
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                ✉️
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword()">
+
+                                👁️
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="form-options">
+
+                        <label class="remember">
+
+                            <input type="checkbox">
+
+                            Remember me
+
+                        </label>
+
+
+                        <a href="#" class="forgot">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <!-- LOGIN -->
+
+                    <button
+                        type="submit"
+                        class="login-button">
+
+                        Login to Promptify AI
+
+                    </button>
+
+
+                </form>
+
+
+                <div class="divider">
+                    OR
+                </div>
+
+
+                <button
+                    type="button"
+                    class="google-button"
+                    onclick="googleLogin()">
+
+                    🌐 Continue with Google
+
+                </button>
+
+
+                <div
+                    id="message">
+                </div>
+
+
+                <p class="register-text">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+                        Create Account
+                    </a>
+
+                </p>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+
+        /* =========================
+           PASSWORD SHOW / HIDE
+        ========================= */
+
+        function togglePassword() {
+
+            var password =
+                document.getElementById("password");
+
+            var button =
+                document.querySelector(".password-toggle");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.innerHTML = "🙈";
+
+            } else {
+
+                password.type = "password";
+
+                button.innerHTML = "👁️";
+
+            }
+
+        }
+
+
+        /* =========================
+           LOGIN DEMO
+        ========================= */
+
+        function loginUser(event) {
+
+            event.preventDefault();
+
+
+            var email =
+                document.getElementById("email").value;
+
+            var password =
+                document.getElementById("password").value;
+
+
+            var message =
+                document.getElementById("message");
+
+
+            if (
+                email.trim() === "" ||
+                password.trim() === ""
+            ) {
+
+                message.innerHTML =
+                    "⚠️ Please fill all the fields.";
+
+                message.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            message.innerHTML =
+                "✅ Login successful! Welcome to Promptify AI.";
+
+            message.style.display =
+                "block";
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "generator.html";
+
+            }, 1200);
+
+        }
+
+
+        /* =========================
+           GOOGLE DEMO
+        ========================= */
+
+        function googleLogin() {
+
+            var message =
+                document.getElementById("message");
+
+
+            message.innerHTML =
+                "🌐 Google login integration will be connected later.";
+
+            message.style.display =
+                "block";
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

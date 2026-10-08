@@ -1,0 +1,2336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Promptify AI | How It Works</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Times New Roman",serif;
+    color:#2d193f;
+    background:
+        radial-gradient(circle at 8% 12%,rgba(174,125,255,.20),transparent 30%),
+        radial-gradient(circle at 92% 25%,rgba(218,177,255,.22),transparent 30%),
+        linear-gradient(135deg,#fcfaff,#f3ebff,#ffffff);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+h1,h2,h3,h4,
+.logo,
+nav a,
+button,
+.badge{
+    font-family:Algerian,"Times New Roman",serif;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.bg{
+    position:fixed;
+    border-radius:50%;
+    z-index:-1;
+    filter:blur(5px);
+    animation:float 9s ease-in-out infinite;
+}
+
+.bg1{
+    width:330px;
+    height:330px;
+    left:-140px;
+    top:180px;
+    background:rgba(133,76,220,.11);
+}
+
+.bg2{
+    width:390px;
+    height:390px;
+    right:-170px;
+    bottom:100px;
+    background:rgba(207,150,255,.12);
+    animation-delay:2s;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translate(0,0);
+    }
+
+    50%{
+        transform:translate(25px,-30px);
+    }
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(111,65,169,.12);
+}
+
+.navbar{
+    max-width:1200px;
+    height:76px;
+    margin:auto;
+    padding:0 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    text-decoration:none;
+    color:#6937b7;
+    font-size:25px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#ae67ef;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#4d3b5c;
+    font-size:14px;
+    transition:.3s;
+}
+
+nav a:hover,
+nav a.active{
+    color:#773dc9;
+}
+
+.nav-btn{
+    color:white !important;
+    padding:12px 20px;
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c35c2,
+            #a65def
+        );
+
+    box-shadow:
+        0 9px 23px
+        rgba(108,53,194,.25);
+}
+
+.nav-btn:hover{
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    max-width:1000px;
+    margin:auto;
+
+    padding:85px 25px 55px;
+
+    text-align:center;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:9px 18px;
+
+    border-radius:30px;
+
+    background:rgba(118,65,200,.09);
+
+    border:1px solid rgba(118,65,200,.16);
+
+    color:#713bc0;
+
+    font-size:12px;
+
+    margin-bottom:22px;
+}
+
+.hero h1{
+    color:#2d183f;
+
+    font-size:50px;
+
+    line-height:1.15;
+
+    margin-bottom:18px;
+}
+
+.gradient{
+    background:
+        linear-gradient(
+            90deg,
+            #6431bd,
+            #b169f1,
+            #7140cf
+        );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:790px;
+
+    margin:auto;
+
+    color:#75647e;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    max-width:1150px;
+    margin:auto;
+    padding:10px 25px 90px;
+}
+
+.section{
+    margin-bottom:75px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:38px;
+}
+
+.section-title h2{
+    color:#351c4b;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    max-width:760px;
+    margin:auto;
+
+    color:#7b6a85;
+    font-size:16px;
+    line-height:1.7;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.intro-card{
+    padding:35px;
+
+    border-radius:27px;
+
+    background:
+        rgba(255,255,255,.77);
+
+    border:1px solid rgba(120,74,178,.14);
+
+    box-shadow:
+        0 20px 55px
+        rgba(81,43,126,.08);
+}
+
+.intro-card h2{
+    color:#39204d;
+    font-size:27px;
+    margin-bottom:15px;
+}
+
+.intro-card p{
+    color:#6f5d79;
+    font-size:16px;
+    line-height:1.85;
+    margin-bottom:14px;
+}
+
+.intro-card p:last-child{
+    margin-bottom:0;
+}
+
+
+/* =========================
+   MAIN FLOW
+========================= */
+
+.flow-box{
+    padding:40px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(109,53,194,.08),
+            rgba(190,132,246,.08)
+        );
+
+    border:1px solid rgba(111,55,195,.13);
+}
+
+.flow{
+    display:grid;
+
+    grid-template-columns:
+        1fr 70px 1fr 70px 1fr;
+
+    align-items:center;
+    gap:10px;
+}
+
+.flow-card{
+    padding:30px 22px;
+
+    text-align:center;
+
+    background:white;
+
+    border-radius:23px;
+
+    border:1px solid #e3d7ed;
+
+    box-shadow:
+        0 15px 38px
+        rgba(81,43,126,.07);
+
+    transition:.35s;
+}
+
+.flow-card:hover{
+    transform:translateY(-8px);
+}
+
+.flow-icon{
+    width:65px;
+    height:65px;
+
+    margin:0 auto 17px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eadbfa,
+            #f8efff
+        );
+
+    font-size:30px;
+}
+
+.flow-card h3{
+    color:#402452;
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.flow-card p{
+    color:#77647f;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.flow-arrow{
+    text-align:center;
+
+    font-size:35px;
+
+    color:#8147c8;
+
+    animation:arrowMove 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowMove{
+
+    0%,100%{
+        transform:translateX(0);
+    }
+
+    50%{
+        transform:translateX(7px);
+    }
+
+}
+
+
+/* =========================
+   STEP TIMELINE
+========================= */
+
+.timeline{
+    position:relative;
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.timeline::before{
+    content:"";
+
+    position:absolute;
+
+    left:32px;
+
+    top:0;
+    bottom:0;
+
+    width:2px;
+
+    background:
+        linear-gradient(
+            #7b3fc5,
+            #d6b5ef
+        );
+}
+
+.step{
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:65px 1fr;
+
+    gap:25px;
+
+    margin-bottom:32px;
+}
+
+.step:last-child{
+    margin-bottom:0;
+}
+
+.step-number{
+    width:65px;
+    height:65px;
+
+    border-radius:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6934c0,
+            #a75eee
+        );
+
+    font-family:Algerian;
+
+    font-size:15px;
+
+    position:relative;
+
+    z-index:2;
+
+    box-shadow:
+        0 12px 27px
+        rgba(103,51,188,.22);
+}
+
+.step-content{
+    padding:27px 30px;
+
+    border-radius:23px;
+
+    background:white;
+
+    border:1px solid #e2d5ed;
+
+    box-shadow:
+        0 13px 35px
+        rgba(81,43,126,.06);
+
+    transition:.35s;
+}
+
+.step-content:hover{
+    transform:translateX(6px);
+}
+
+.step-content h3{
+    color:#3e2450;
+    font-size:21px;
+    margin-bottom:9px;
+}
+
+.step-content p{
+    color:#75627f;
+    font-size:15px;
+    line-height:1.8;
+    margin-bottom:11px;
+}
+
+.step-content p:last-child{
+    margin-bottom:0;
+}
+
+.step-label{
+    color:#7040ad;
+    font-size:13px;
+    font-weight:bold;
+}
+
+
+/* =========================
+   PURPOSE
+========================= */
+
+.purpose-box{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:15px;
+}
+
+.purpose{
+    padding:25px 14px;
+
+    text-align:center;
+
+    background:white;
+
+    border-radius:20px;
+
+    border:1px solid #e3d6ee;
+
+    box-shadow:
+        0 10px 30px
+        rgba(81,43,126,.06);
+
+    transition:.3s;
+}
+
+.purpose:hover{
+    transform:translateY(-6px);
+}
+
+.purpose-icon{
+    font-size:29px;
+    margin-bottom:10px;
+}
+
+.purpose h4{
+    color:#432755;
+    font-size:15px;
+    margin-bottom:7px;
+}
+
+.purpose p{
+    color:#806d89;
+    font-size:12px;
+    line-height:1.55;
+}
+
+
+/* =========================
+   REAL EXAMPLE
+========================= */
+
+.demo{
+    display:grid;
+
+    grid-template-columns:.8fr .15fr 1.05fr;
+
+    gap:20px;
+
+    align-items:center;
+}
+
+.demo-input,
+.demo-output{
+    padding:30px;
+
+    border-radius:25px;
+
+    background:white;
+
+    border:1px solid #e2d5ed;
+
+    box-shadow:
+        0 17px 42px
+        rgba(81,43,126,.07);
+}
+
+.demo-label{
+    color:#8150b7;
+
+    font-family:Algerian;
+
+    font-size:12px;
+
+    margin-bottom:12px;
+}
+
+.demo-input h3{
+    color:#3c2350;
+
+    font-size:20px;
+
+    margin-bottom:12px;
+}
+
+.demo-input p{
+    color:#75637f;
+
+    line-height:1.7;
+
+    font-size:15px;
+}
+
+.demo-arrow{
+    text-align:center;
+
+    font-size:38px;
+
+    color:#8248c9;
+}
+
+.output-item{
+    padding:17px;
+
+    border-radius:17px;
+
+    background:#f8f2fc;
+
+    margin-bottom:12px;
+}
+
+.output-item:last-child{
+    margin-bottom:0;
+}
+
+.output-item h4{
+    color:#4c2a64;
+
+    font-size:16px;
+
+    margin-bottom:6px;
+}
+
+.output-item p{
+    color:#796780;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+
+/* =========================
+   WHAT HAPPENS INSIDE
+========================= */
+
+.inside-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.inside-card{
+    padding:28px;
+
+    border-radius:23px;
+
+    background:
+        rgba(255,255,255,.78);
+
+    border:1px solid #e3d7ed;
+
+    box-shadow:
+        0 14px 38px
+        rgba(81,43,126,.06);
+
+    transition:.3s;
+}
+
+.inside-card:hover{
+    transform:translateY(-7px);
+}
+
+.inside-icon{
+    font-size:30px;
+    margin-bottom:13px;
+}
+
+.inside-card h3{
+    color:#412654;
+    font-size:19px;
+    margin-bottom:9px;
+}
+
+.inside-card p{
+    color:#77647f;
+    font-size:14px;
+    line-height:1.75;
+}
+
+
+/* =========================
+   RESULTS
+========================= */
+
+.results{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:22px;
+}
+
+.result-card{
+    padding:32px;
+
+    border-radius:25px;
+
+    background:white;
+
+    border:1px solid #e2d5ed;
+
+    box-shadow:
+        0 17px 43px
+        rgba(81,43,126,.07);
+}
+
+.result-icon{
+    font-size:30px;
+    margin-bottom:13px;
+}
+
+.result-card h3{
+    color:#402452;
+    font-size:22px;
+    margin-bottom:11px;
+}
+
+.result-card p{
+    color:#75627e;
+    font-size:15px;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.result-card ul{
+    list-style:none;
+}
+
+.result-card li{
+    color:#6d5b76;
+    font-size:14px;
+    margin-bottom:9px;
+    line-height:1.5;
+}
+
+.result-card li::before{
+    content:"✓";
+    color:#7540c6;
+    font-weight:bold;
+    margin-right:9px;
+}
+
+
+/* =========================
+   IMPROVE
+========================= */
+
+.improve{
+    padding:38px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108,52,193,.08),
+            rgba(184,125,241,.08)
+        );
+
+    border:1px solid rgba(111,55,195,.13);
+}
+
+.improve-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+}
+
+.improve-card{
+    padding:25px;
+
+    background:white;
+
+    border-radius:20px;
+
+    border:1px solid #e4d8ee;
+
+    transition:.3s;
+}
+
+.improve-card:hover{
+    transform:translateY(-5px);
+}
+
+.improve-card h3{
+    color:#432755;
+
+    font-size:18px;
+
+    margin-bottom:8px;
+}
+
+.improve-card p{
+    color:#7b687f;
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+
+/* =========================
+   BENEFITS
+========================= */
+
+.benefits{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+}
+
+.benefit{
+    padding:25px 17px;
+
+    text-align:center;
+
+    background:white;
+
+    border-radius:20px;
+
+    border:1px solid #e3d6ed;
+
+    box-shadow:
+        0 10px 30px
+        rgba(81,43,126,.05);
+}
+
+.benefit-icon{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.benefit h4{
+    color:#432755;
+    font-size:15px;
+    margin-bottom:7px;
+}
+
+.benefit p{
+    color:#806d89;
+    font-size:13px;
+    line-height:1.55;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    max-width:1000px;
+
+    margin:0 auto 80px;
+
+    padding:55px 25px;
+
+    text-align:center;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0e2ff,
+            #fbf8ff
+        );
+
+    border:1px solid #e2d3f1;
+
+    box-shadow:
+        0 20px 50px
+        rgba(83,43,127,.08);
+}
+
+.cta h2{
+    color:#321a47;
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.cta p{
+    max-width:700px;
+
+    margin:0 auto 25px;
+
+    color:#766580;
+
+    font-size:17px;
+
+    line-height:1.7;
+}
+
+.cta-btn{
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:14px 27px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6b34c2,
+            #a65ced
+        );
+
+    font-family:Algerian;
+
+    font-size:13px;
+
+    box-shadow:
+        0 12px 28px
+        rgba(105,52,190,.25);
+
+    transition:.3s;
+}
+
+.cta-btn:hover{
+    transform:translateY(-3px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#28143c;
+
+    color:#d9cde3;
+
+    text-align:center;
+
+    padding:30px 20px;
+}
+
+.footer-logo{
+    color:white;
+
+    font-family:Algerian;
+
+    font-size:21px;
+
+    margin-bottom:8px;
+}
+
+footer p{
+    font-size:14px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+    .intro,
+    .demo,
+    .results{
+        grid-template-columns:1fr;
+    }
+
+    .flow{
+        grid-template-columns:1fr;
+    }
+
+    .flow-arrow{
+        transform:rotate(90deg);
+    }
+
+    .purpose-box{
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .inside-grid,
+    .improve-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .benefits{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    nav a{
+        display:none;
+    }
+
+    nav a.nav-btn{
+        display:block;
+    }
+
+    .hero{
+        padding-top:55px;
+    }
+
+    .hero h1{
+        font-size:35px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .flow-box,
+    .intro-card,
+    .improve{
+        padding:25px;
+    }
+
+    .purpose-box,
+    .inside-grid,
+    .improve-grid,
+    .benefits{
+        grid-template-columns:1fr;
+    }
+
+    .step{
+        grid-template-columns:52px 1fr;
+        gap:15px;
+    }
+
+    .step-number{
+        width:52px;
+        height:52px;
+    }
+
+    .timeline::before{
+        left:25px;
+    }
+
+    .step-content{
+        padding:23px 20px;
+    }
+
+    .section-title h2{
+        font-size:27px;
+    }
+
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f3ebfa;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#b184d8;
+    border-radius:20px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="bg bg1"></div>
+<div class="bg bg2"></div>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header>
+
+<div class="navbar">
+
+    <a href="index.html" class="logo">
+        Promptify<span>AI</span>
+    </a>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="features.html">
+            Features
+        </a>
+
+        <a href="how-it-works.html" class="active">
+            How It Works
+        </a>
+
+        <a href="examples.html">
+            Examples
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a href="generator.html" class="nav-btn">
+            Try Generator
+        </a>
+
+    </nav>
+
+</div>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="badge">
+        ⚙️ HOW PROMPTIFY AI WORKS
+    </div>
+
+    <h1>
+        From A Simple Idea To
+        <span class="gradient">
+            Impactful Results
+        </span>
+    </h1>
+
+    <p>
+        Promptify AI follows a simple step-by-step process.
+        You provide the basic idea in your own words, select
+        your purpose and receive two useful outputs: a detailed
+        prompt and an understandable description of the topic.
+    </p>
+
+</section>
+
+
+
+<main class="main">
+
+
+<!-- =========================
+     BASIC EXPLANATION
+========================= -->
+
+<section class="section">
+
+    <div class="intro">
+
+
+        <div class="intro-card">
+
+            <h2>
+                What Happens When You Use Promptify AI?
+            </h2>
+
+            <p>
+                The process begins with something very simple:
+                your idea. You do not have to start with a
+                professionally written prompt. You can write
+                the topic just as you would normally describe it.
+            </p>
+
+            <p>
+                For example, instead of writing a long instruction,
+                you can simply type:
+                <strong>
+                    "Explain machine learning for my college assignment."
+                </strong>
+            </p>
+
+            <p>
+                Promptify AI uses that starting idea along with
+                your selected purpose to organize the information
+                into a more detailed structure.
+            </p>
+
+        </div>
+
+
+        <div class="intro-card">
+
+            <h2>
+                What Do You Receive?
+            </h2>
+
+            <p>
+                The platform focuses on two main results. The
+                first is a detailed prompt that explains what
+                should be covered and how the topic can be
+                structured.
+            </p>
+
+            <p>
+                The second is an impactful description that
+                explains the topic itself in a student-friendly
+                and organized way.
+            </p>
+
+            <p>
+                This means the user gets both a tool for creating
+                better prompts and useful information for
+                understanding the topic.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     MAIN FLOW
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            The Complete Process
+        </h2>
+
+        <p>
+            The entire journey can be understood through three
+            simple stages.
+        </p>
+
+    </div>
+
+
+    <div class="flow-box">
+
+        <div class="flow">
+
+
+            <div class="flow-card">
+
+                <div class="flow-icon">
+                    💭
+                </div>
+
+                <h3>
+                    Simple Idea
+                </h3>
+
+                <p>
+                    Start with a topic, question, project idea
+                    or concept that you want to understand,
+                    explain or develop.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+
+            <div class="flow-card">
+
+                <div class="flow-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    Promptify AI
+                </h3>
+
+                <p>
+                    Select the purpose and let the platform
+                    organize the idea into a more structured
+                    format.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+
+            <div class="flow-card">
+
+                <div class="flow-icon">
+                    🚀
+                </div>
+
+                <h3>
+                    Better Results
+                </h3>
+
+                <p>
+                    Receive a detailed prompt and an impactful
+                    description that you can understand,
+                    improve and reuse.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOUR STEPS
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Step-by-Step Explanation
+        </h2>
+
+        <p>
+            Here is what the user actually does at each stage
+            of the Promptify AI process.
+        </p>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+        <!-- STEP 1 -->
+
+        <div class="step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <div class="step-content">
+
+                <div class="step-label">
+                    STEP 1 — THINK
+                </div>
+
+                <h3>
+                    Start With Your Idea
+                </h3>
+
+                <p>
+                    First, decide what you want to learn, explain,
+                    create or explore. This could be a technical
+                    concept, academic topic, project idea,
+                    programming subject or any other topic.
+                </p>
+
+                <p>
+                    Your starting point does not need to be
+                    perfectly written. The purpose is simply to
+                    communicate the main idea you have in mind.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STEP 2 -->
+
+        <div class="step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <div class="step-content">
+
+                <div class="step-label">
+                    STEP 2 — WRITE
+                </div>
+
+                <h3>
+                    Enter It In Simple Words
+                </h3>
+
+                <p>
+                    Write your idea inside the generator. You can
+                    use a short sentence or a basic question.
+                </p>
+
+                <p>
+                    For example:
+                    <strong>
+                        "I want to understand cybersecurity for
+                        my presentation."
+                    </strong>
+                    You do not have to manually decide every
+                    section at this stage.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STEP 3 -->
+
+        <div class="step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <div class="step-content">
+
+                <div class="step-label">
+                    STEP 3 — CHOOSE
+                </div>
+
+                <h3>
+                    Select Your Purpose
+                </h3>
+
+                <p>
+                    Choose the purpose for which you need the
+                    result. Available purposes can include School,
+                    College, Technical, Assignment, Presentation
+                    and Exam.
+                </p>
+
+                <p>
+                    Purpose selection helps define the type of
+                    structure and level of explanation that the
+                    user is looking for.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STEP 4 -->
+
+        <div class="step">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <div class="step-content">
+
+                <div class="step-label">
+                    STEP 4 — GENERATE
+                </div>
+
+                <h3>
+                    Create Your Results
+                </h3>
+
+                <p>
+                    After the user clicks the generate button,
+                    Promptify AI prepares the two main outputs:
+                    a detailed prompt and an impactful description.
+                </p>
+
+                <p>
+                    The result is presented in separate sections
+                    so users can easily understand, copy or improve
+                    each output.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STEP 5 -->
+
+        <div class="step">
+
+            <div class="step-number">
+                05
+            </div>
+
+            <div class="step-content">
+
+                <div class="step-label">
+                    STEP 5 — IMPROVE
+                </div>
+
+                <h3>
+                    Refine The Result
+                </h3>
+
+                <p>
+                    If the first result is not at the desired
+                    level, the user can regenerate it or use
+                    options such as making the result simpler
+                    or more detailed.
+                </p>
+
+                <p>
+                    This gives the user control over how much
+                    information they want in the final result.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PURPOSE
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Choose According To Your Need
+        </h2>
+
+        <p>
+            The same topic can require different kinds of
+            explanations depending on its purpose.
+        </p>
+
+    </div>
+
+
+    <div class="purpose-box">
+
+
+        <div class="purpose">
+
+            <div class="purpose-icon">
+                🏫
+            </div>
+
+            <h4>
+                School
+            </h4>
+
+            <p>
+                Simple explanations and easy-to-understand
+                concepts.
+            </p>
+
+        </div>
+
+
+        <div class="purpose">
+
+            <div class="purpose-icon">
+                🎓
+            </div>
+
+            <h4>
+                College
+            </h4>
+
+            <p>
+                More structured academic information and concepts.
+            </p>
+
+        </div>
+
+
+        <div class="purpose">
+
+            <div class="purpose-icon">
+                💻
+            </div>
+
+            <h4>
+                Technical
+            </h4>
+
+            <p>
+                Technical concepts, programming and technology topics.
+            </p>
+
+        </div>
+
+
+        <div class="purpose">
+
+            <div class="purpose-icon">
+                📝
+            </div>
+
+            <h4>
+                Assignment
+            </h4>
+
+            <p>
+                Organized information suitable for academic work.
+            </p>
+
+        </div>
+
+
+        <div class="purpose">
+
+            <div class="purpose-icon">
+                📊
+            </div>
+
+            <h4>
+                Presentation
+            </h4>
+
+            <p>
+                Structured points that are easier to present.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     REAL EXAMPLE
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            See A Real Example
+        </h2>
+
+        <p>
+            The following example shows how a basic idea can
+            become a structured result.
+        </p>
+
+    </div>
+
+
+    <div class="demo">
+
+
+        <div class="demo-input">
+
+            <div class="demo-label">
+                USER INPUT
+            </div>
+
+            <h3>
+                Machine Learning
+            </h3>
+
+            <p>
+                "Explain machine learning for my college assignment
+                including its types, working, applications,
+                advantages and limitations."
+            </p>
+
+        </div>
+
+
+        <div class="demo-arrow">
+            →
+        </div>
+
+
+        <div class="demo-output">
+
+            <div class="demo-label">
+                PROMPTIFY AI OUTPUT
+            </div>
+
+
+            <div class="output-item">
+
+                <h4>
+                    ✨ Detailed Prompt
+                </h4>
+
+                <p>
+                    Create a structured college-level explanation
+                    of Machine Learning covering its definition,
+                    working process, major types, common algorithms,
+                    applications, advantages, limitations and
+                    suitable examples.
+                </p>
+
+            </div>
+
+
+            <div class="output-item">
+
+                <h4>
+                    💡 Impactful Description
+                </h4>
+
+                <p>
+                    Explain what Machine Learning means, how
+                    machines learn from data, its major types,
+                    real-world applications, benefits and
+                    limitations in an understandable academic format.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     WHAT HAPPENS
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            What Happens During The Process?
+        </h2>
+
+        <p>
+            Promptify AI focuses on turning an unstructured idea
+            into organized and useful information.
+        </p>
+
+    </div>
+
+
+    <div class="inside-grid">
+
+
+        <div class="inside-card">
+
+            <div class="inside-icon">
+                🧠
+            </div>
+
+            <h3>
+                Understand The Idea
+            </h3>
+
+            <p>
+                The starting topic and the user's requirement
+                become the foundation of the generated result.
+                The goal is to preserve the original idea rather
+                than replacing it with an unrelated topic.
+            </p>
+
+        </div>
+
+
+        <div class="inside-card">
+
+            <div class="inside-icon">
+                🧩
+            </div>
+
+            <h3>
+                Organize The Information
+            </h3>
+
+            <p>
+                The idea is expanded into relevant sections so
+                that important aspects of the topic can be covered
+                in a more organized way.
+            </p>
+
+        </div>
+
+
+        <div class="inside-card">
+
+            <div class="inside-icon">
+                📖
+            </div>
+
+            <h3>
+                Explain The Topic
+            </h3>
+
+            <p>
+                The description output focuses on helping the user
+                understand the subject instead of giving only a
+                list of keywords or a title.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     TWO OUTPUTS
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Two Useful Results
+        </h2>
+
+        <p>
+            Promptify AI separates the generated information
+            into two outputs because they serve different purposes.
+        </p>
+
+    </div>
+
+
+    <div class="results">
+
+
+        <div class="result-card">
+
+            <div class="result-icon">
+                ✨
+            </div>
+
+            <h3>
+                Detailed Prompt
+            </h3>
+
+            <p>
+                The detailed prompt acts as a structured instruction.
+                It can tell an AI system what topic to cover,
+                which sections to include and what kind of
+                explanation is required.
+            </p>
+
+            <ul>
+
+                <li>
+                    Defines the main topic
+                </li>
+
+                <li>
+                    Adds important subtopics
+                </li>
+
+                <li>
+                    Specifies the required structure
+                </li>
+
+                <li>
+                    Can include examples and applications
+                </li>
+
+                <li>
+                    Can be copied for further AI interaction
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="result-card">
+
+            <div class="result-icon">
+                💡
+            </div>
+
+            <h3>
+                Impactful Description
+            </h3>
+
+            <p>
+                The description focuses on the topic itself.
+                It provides organized information so the user
+                can understand what the subject means and how
+                its important parts are connected.
+            </p>
+
+            <ul>
+
+                <li>
+                    Explains the topic clearly
+                </li>
+
+                <li>
+                    Covers important concepts
+                </li>
+
+                <li>
+                    Can include working or process
+                </li>
+
+                <li>
+                    Includes practical applications
+                </li>
+
+                <li>
+                    Helps users explain the topic
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     IMPROVEMENT
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Your First Result Is Not The End
+        </h2>
+
+        <p>
+            Promptify AI also provides ways to adjust the result.
+        </p>
+
+    </div>
+
+
+    <div class="improve">
+
+        <div class="improve-grid">
+
+
+            <div class="improve-card">
+
+                <h3>
+                    🔄 Regenerate
+                </h3>
+
+                <p>
+                    Create another version of the result when
+                    you want a different wording or structure
+                    while keeping the same basic idea.
+                </p>
+
+            </div>
+
+
+            <div class="improve-card">
+
+                <h3>
+                    🌱 Make Simpler
+                </h3>
+
+                <p>
+                    Useful when the generated content feels too
+                    technical or detailed and you want a more
+                    beginner-friendly explanation.
+                </p>
+
+            </div>
+
+
+            <div class="improve-card">
+
+                <h3>
+                    📚 Make Detailed
+                </h3>
+
+                <p>
+                    Useful when you need additional explanation,
+                    more sections, examples or deeper information
+                    about the selected topic.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     BENEFITS
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Why This Process Is Useful
+        </h2>
+
+        <p>
+            The workflow is designed to make structured content
+            creation easier without making the user start from zero.
+        </p>
+
+    </div>
+
+
+    <div class="benefits">
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                ⚡
+            </div>
+
+            <h4>
+                Saves Time
+            </h4>
+
+            <p>
+                Reduces the effort needed to manually plan
+                every part of a prompt.
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                🧩
+            </div>
+
+            <h4>
+                Adds Structure
+            </h4>
+
+            <p>
+                Turns a basic thought into organized information.
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                🎓
+            </div>
+
+            <h4>
+                Helps Learning
+            </h4>
+
+            <p>
+                Gives users a clearer way to understand
+                unfamiliar topics.
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                🚀
+            </div>
+
+            <h4>
+                Easy To Use
+            </h4>
+
+            <p>
+                The workflow requires only a few simple steps.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+    <h2>
+        Have An Idea? Let's Build It.
+    </h2>
+
+    <p>
+        Write your idea in simple words, choose your purpose
+        and let Promptify AI turn the starting point into a
+        more structured prompt and meaningful description.
+    </p>
+
+    <a href="generator.html" class="cta-btn">
+        ✨ Start Generating
+    </a>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        PromptifyAI
+    </div>
+
+    <p>
+        Simple Idea. Impactful Description.
+    </p>
+
+</footer>
+
+
+
+<script>
+
+/* =========================
+   SCROLL ANIMATION
+========================= */
+
+const cards =
+document.querySelectorAll(
+    ".flow-card, .step-content, .purpose, .inside-card, .result-card, .improve-card, .benefit"
+);
+
+const observer =
+new IntersectionObserver(
+
+    function(entries){
+
+        entries.forEach(function(entry){
+
+            if(entry.isIntersecting){
+
+                entry.target.style.opacity="1";
+
+                entry.target.style.transform=
+                    "translateY(0)";
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:.12
+    }
+
+);
+
+
+cards.forEach(function(card){
+
+    card.style.opacity="0";
+
+    card.style.transform="translateY(25px)";
+
+    card.style.transition=
+        "opacity .7s ease, transform .7s ease";
+
+    observer.observe(card);
+
+});
+
+
+/* =========================
+   CARD HOVER
+========================= */
+
+document.querySelectorAll(
+    ".flow-card, .inside-card, .result-card"
+).forEach(function(card){
+
+    card.addEventListener(
+        "mousemove",
+        function(e){
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                e.clientX - rect.left;
+
+            const y =
+                e.clientY - rect.top;
+
+            const rotateX =
+                ((y / rect.height)-.5)*-1.3;
+
+            const rotateY =
+                ((x / rect.width)-.5)*1.3;
+
+            card.style.transform =
+                `perspective(800px)
+                 rotateX(${rotateX}deg)
+                 rotateY(${rotateY}deg)
+                 translateY(-5px)`;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        function(){
+
+            card.style.transform=
+                "translateY(-5px)";
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>

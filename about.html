@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Promptify AI | About</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Times New Roman",serif;
+    color:#2d193f;
+    background:
+        radial-gradient(circle at 8% 12%,rgba(174,125,255,.20),transparent 30%),
+        radial-gradient(circle at 92% 25%,rgba(218,177,255,.23),transparent 30%),
+        linear-gradient(135deg,#fcfaff,#f3ebff,#ffffff);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+h1,h2,h3,h4,
+.logo,
+nav a,
+button,
+.badge{
+    font-family:Algerian,"Times New Roman",serif;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.bg{
+    position:fixed;
+    border-radius:50%;
+    z-index:-1;
+    filter:blur(4px);
+    animation:float 8s ease-in-out infinite;
+}
+
+.bg1{
+    width:320px;
+    height:320px;
+    left:-130px;
+    top:150px;
+    background:rgba(137,78,220,.11);
+}
+
+.bg2{
+    width:380px;
+    height:380px;
+    right:-160px;
+    bottom:100px;
+    background:rgba(207,150,255,.12);
+    animation-delay:2s;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translate(0,0);
+    }
+
+    50%{
+        transform:translate(20px,-30px);
+    }
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(255,255,255,.80);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(111,65,169,.12);
+}
+
+.navbar{
+    max-width:1200px;
+    height:76px;
+
+    margin:auto;
+    padding:0 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    text-decoration:none;
+
+    color:#6937b7;
+
+    font-size:25px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#ae67ef;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#4c395d;
+    font-size:14px;
+    transition:.3s;
+}
+
+nav a:hover,
+nav a.active{
+    color:#773dc9;
+}
+
+.nav-btn{
+    color:white !important;
+    padding:12px 20px;
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c35c2,
+            #a65def
+        );
+
+    box-shadow:
+        0 9px 23px
+        rgba(108,53,194,.25);
+}
+
+.nav-btn:hover{
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    max-width:1000px;
+    margin:auto;
+
+    padding:85px 25px 55px;
+
+    text-align:center;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:9px 18px;
+
+    border-radius:30px;
+
+    background:rgba(118,65,200,.09);
+
+    border:1px solid rgba(118,65,200,.16);
+
+    color:#713bc0;
+
+    font-size:12px;
+
+    margin-bottom:22px;
+}
+
+.hero h1{
+    color:#2d183f;
+
+    font-size:50px;
+
+    line-height:1.15;
+
+    margin-bottom:18px;
+}
+
+.gradient{
+    background:
+        linear-gradient(
+            90deg,
+            #6431bd,
+            #b169f1,
+            #7140cf
+        );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:750px;
+
+    margin:auto;
+
+    color:#75647e;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    max-width:1150px;
+
+    margin:auto;
+
+    padding:10px 25px 90px;
+}
+
+
+/* =========================
+   COMMON SECTION
+========================= */
+
+.section{
+    margin-bottom:70px;
+}
+
+.section-title{
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    color:#351c4b;
+
+    font-size:32px;
+
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#7b6a85;
+
+    font-size:16px;
+    line-height:1.6;
+}
+
+
+/* =========================
+   ABOUT INTRO
+========================= */
+
+.intro{
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    gap:25px;
+
+    align-items:stretch;
+}
+
+.intro-text,
+.intro-visual{
+    padding:35px;
+
+    border-radius:27px;
+
+    background:
+        rgba(255,255,255,.76);
+
+    border:1px solid
+        rgba(120,74,178,.14);
+
+    box-shadow:
+        0 20px 55px
+        rgba(81,43,126,.08);
+
+    backdrop-filter:blur(14px);
+}
+
+.intro-text h2{
+    color:#371e4c;
+
+    font-size:29px;
+
+    margin-bottom:17px;
+}
+
+.intro-text p{
+    color:#6f5d79;
+
+    font-size:16px;
+
+    line-height:1.85;
+
+    margin-bottom:15px;
+}
+
+.intro-text p:last-child{
+    margin-bottom:0;
+}
+
+
+/* =========================
+   VISUAL
+========================= */
+
+.intro-visual{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1e4ff,
+            #ffffff
+        );
+}
+
+.visual-content{
+    width:100%;
+
+    text-align:center;
+
+    position:relative;
+    z-index:2;
+}
+
+.ai-orb{
+    width:110px;
+    height:110px;
+
+    margin:0 auto 22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6d35c3,
+            #ad65ef
+        );
+
+    color:white;
+
+    font-size:47px;
+
+    box-shadow:
+        0 20px 40px
+        rgba(103,51,187,.25);
+
+    animation:orbFloat 3s ease-in-out infinite;
+}
+
+@keyframes orbFloat{
+
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-10px) rotate(3deg);
+    }
+
+}
+
+.visual-content h3{
+    color:#3c2252;
+
+    font-size:24px;
+
+    margin-bottom:10px;
+}
+
+.visual-content p{
+    color:#796781;
+
+    line-height:1.6;
+
+    font-size:15px;
+}
+
+.visual-circle{
+    position:absolute;
+
+    width:230px;
+    height:230px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(117,65,193,.12);
+
+    animation:rotateCircle 10s linear infinite;
+}
+
+@keyframes rotateCircle{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================
+   PROBLEM / SOLUTION
+========================= */
+
+.problem-solution{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:22px;
+}
+
+.info-card{
+    padding:32px;
+
+    border-radius:25px;
+
+    background:
+        rgba(255,255,255,.77);
+
+    border:1px solid
+        rgba(120,74,178,.14);
+
+    box-shadow:
+        0 18px 50px
+        rgba(81,43,126,.08);
+
+    transition:.35s;
+}
+
+.info-card:hover{
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 25px 60px
+        rgba(81,43,126,.13);
+}
+
+.info-icon{
+    width:57px;
+    height:57px;
+
+    border-radius:17px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#eee0fc;
+
+    font-size:25px;
+
+    margin-bottom:18px;
+}
+
+.info-card h3{
+    color:#3b2250;
+
+    font-size:23px;
+
+    margin-bottom:12px;
+}
+
+.info-card p{
+    color:#705f7b;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    margin-bottom:16px;
+}
+
+.info-card ul{
+    list-style:none;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.info-card li{
+    color:#65536f;
+
+    font-size:14px;
+
+    line-height:1.5;
+}
+
+.info-card li::before{
+    content:"✓";
+
+    color:#7540c6;
+
+    font-weight:bold;
+
+    margin-right:9px;
+}
+
+
+/* =========================
+   WHAT IT DOES
+========================= */
+
+.capability-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.capability{
+    padding:28px 24px;
+
+    border-radius:22px;
+
+    background:
+        rgba(255,255,255,.74);
+
+    border:1px solid #e3d6ee;
+
+    box-shadow:
+        0 15px 40px
+        rgba(81,43,126,.06);
+
+    transition:.35s;
+}
+
+.capability:hover{
+    transform:translateY(-7px);
+}
+
+.capability-icon{
+    font-size:30px;
+
+    margin-bottom:14px;
+}
+
+.capability h3{
+    color:#402654;
+
+    font-size:19px;
+
+    margin-bottom:10px;
+}
+
+.capability p{
+    color:#796783;
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+
+/* =========================
+   WHO CAN USE
+========================= */
+
+.users-section{
+    padding:35px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(111,55,195,.07),
+            rgba(191,132,245,.08)
+        );
+
+    border:1px solid rgba(111,55,195,.13);
+}
+
+.users-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:16px;
+}
+
+.user-card{
+    text-align:center;
+
+    padding:23px 15px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.78);
+
+    border:1px solid #e4d8ef;
+
+    transition:.3s;
+}
+
+.user-card:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 13px 30px
+        rgba(81,43,126,.08);
+}
+
+.user-icon{
+    font-size:28px;
+
+    margin-bottom:10px;
+}
+
+.user-card h4{
+    color:#412654;
+
+    font-size:16px;
+
+    margin-bottom:6px;
+}
+
+.user-card p{
+    color:#806e8a;
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+
+/* =========================
+   WORKFLOW
+========================= */
+
+.workflow{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+}
+
+.workflow-item{
+    position:relative;
+
+    padding:25px 18px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    background:#fff;
+
+    border:1px solid #e2d5ec;
+
+    box-shadow:
+        0 12px 30px
+        rgba(81,43,126,.06);
+}
+
+.workflow-item:not(:last-child)::after{
+    content:"→";
+
+    position:absolute;
+
+    right:-22px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#8a4ed0;
+
+    font-size:25px;
+
+    z-index:3;
+}
+
+.workflow-number{
+    width:40px;
+    height:40px;
+
+    margin:0 auto 12px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c35c2,
+            #a65def
+        );
+
+    font-family:Algerian;
+
+    font-size:13px;
+}
+
+.workflow-item h4{
+    color:#402452;
+
+    font-size:16px;
+
+    margin-bottom:7px;
+}
+
+.workflow-item p{
+    color:#806d89;
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+
+/* =========================
+   FUTURE VISION
+========================= */
+
+.vision{
+    display:grid;
+
+    grid-template-columns:.85fr 1.15fr;
+
+    gap:25px;
+
+    align-items:stretch;
+}
+
+.vision-main{
+    padding:35px;
+
+    border-radius:27px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6a34c1,
+            #a65def
+        );
+
+    box-shadow:
+        0 23px 55px
+        rgba(102,51,184,.25);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.vision-main::after{
+    content:"";
+
+    position:absolute;
+
+    width:230px;
+    height:230px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    right:-90px;
+    top:-90px;
+}
+
+.vision-main h2{
+    font-size:28px;
+
+    margin-bottom:15px;
+
+    position:relative;
+    z-index:2;
+}
+
+.vision-main p{
+    color:#f4eaff;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+    position:relative;
+    z-index:2;
+}
+
+.vision-list{
+    margin-top:22px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:11px;
+
+    position:relative;
+    z-index:2;
+}
+
+.vision-list div{
+    font-size:14px;
+
+    color:#f8efff;
+}
+
+.vision-list span{
+    margin-right:8px;
+}
+
+.vision-side{
+    padding:35px;
+
+    border-radius:27px;
+
+    background:
+        rgba(255,255,255,.76);
+
+    border:1px solid #e2d5ed;
+
+    box-shadow:
+        0 20px 50px
+        rgba(81,43,126,.08);
+}
+
+.vision-side h3{
+    color:#3a2250;
+
+    font-size:23px;
+
+    margin-bottom:15px;
+}
+
+.vision-side p{
+    color:#70607b;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+    margin-bottom:14px;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    max-width:1000px;
+
+    margin:0 auto 80px;
+
+    padding:55px 25px;
+
+    text-align:center;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0e2ff,
+            #fbf8ff
+        );
+
+    border:1px solid #e2d3f1;
+
+    box-shadow:
+        0 20px 50px
+        rgba(83,43,127,.08);
+}
+
+.cta h2{
+    color:#321a47;
+
+    font-size:32px;
+
+    margin-bottom:12px;
+}
+
+.cta p{
+    max-width:680px;
+
+    margin:0 auto 25px;
+
+    color:#766580;
+
+    font-size:17px;
+
+    line-height:1.7;
+}
+
+.cta-btn{
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:14px 26px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6b34c2,
+            #a65ced
+        );
+
+    font-family:Algerian;
+
+    font-size:13px;
+
+    box-shadow:
+        0 12px 28px
+        rgba(105,52,190,.25);
+
+    transition:.3s;
+}
+
+.cta-btn:hover{
+    transform:translateY(-3px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#28143c;
+
+    color:#d9cde3;
+
+    text-align:center;
+
+    padding:30px 20px;
+}
+
+.footer-logo{
+    color:white;
+
+    font-family:Algerian;
+
+    font-size:21px;
+
+    margin-bottom:8px;
+}
+
+footer p{
+    font-size:14px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .intro,
+    .problem-solution,
+    .vision{
+        grid-template-columns:1fr;
+    }
+
+    .capability-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .users-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .workflow{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .workflow-item:not(:last-child)::after{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+}
+
+@media(max-width:650px){
+
+    nav a{
+        display:none;
+    }
+
+    nav a.nav-btn{
+        display:block;
+    }
+
+    .hero{
+        padding-top:55px;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .intro-text,
+    .intro-visual,
+    .info-card,
+    .vision-main,
+    .vision-side{
+        padding:25px;
+    }
+
+    .capability-grid,
+    .users-grid,
+    .workflow{
+        grid-template-columns:1fr;
+    }
+
+    .section-title h2{
+        font-size:27px;
+    }
+
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f3ebfa;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#b184d8;
+    border-radius:20px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="bg bg1"></div>
+<div class="bg bg2"></div>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header>
+
+<div class="navbar">
+
+    <a href="index.html" class="logo">
+        Promptify<span>AI</span>
+    </a>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="features.html">
+            Features
+        </a>
+
+        <a href="how-it-works.html">
+            How It Works
+        </a>
+
+        <a href="examples.html">
+            Examples
+        </a>
+
+        <a href="about.html" class="active">
+            About
+        </a>
+
+        <a href="generator.html" class="nav-btn">
+            Try Generator
+        </a>
+
+    </nav>
+
+</div>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="badge">
+        💜 ABOUT PROMPTIFY AI
+    </div>
+
+    <h1>
+        Turning Simple Thoughts Into
+        <span class="gradient">
+            Better Results
+        </span>
+    </h1>
+
+    <p>
+        Promptify AI is a simple, accessible idea-to-content
+        platform designed to help users transform basic thoughts
+        into structured prompts and meaningful descriptions.
+    </p>
+
+</section>
+
+
+
+<main class="main">
+
+
+<!-- =========================
+     WHAT IS PROMPTIFY
+========================= -->
+
+<section class="section">
+
+    <div class="intro">
+
+        <div class="intro-text">
+
+            <h2>
+                What Is Promptify AI?
+            </h2>
+
+            <p>
+                Promptify AI is a web-based platform that helps
+                users convert a simple idea or basic description
+                into more structured and useful content.
+            </p>
+
+            <p>
+                Many people know what they want to ask or create,
+                but they may not know how to express their idea
+                in a detailed and organized way. Promptify AI
+                provides a simple interface where users can write
+                their idea naturally without needing advanced
+                prompt-writing knowledge.
+            </p>
+
+            <p>
+                After entering an idea, the user can select a
+                purpose such as college, school, assignment,
+                presentation, exam or technical learning.
+                The platform then prepares a detailed prompt and
+                an impactful description around that idea.
+            </p>
+
+            <p>
+                The goal is to make structured content creation
+                easier, faster and more understandable for
+                students, beginners and general users.
+            </p>
+
+        </div>
+
+
+        <div class="intro-visual">
+
+            <div class="visual-circle"></div>
+
+            <div class="visual-content">
+
+                <div class="ai-orb">
+                    ✨
+                </div>
+
+                <h3>
+                    Promptify AI
+                </h3>
+
+                <p>
+                    Simple Idea<br>
+                    ↓<br>
+                    Structured Thinking<br>
+                    ↓<br>
+                    Better Results
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PROBLEM + SOLUTION
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            The Problem & The Solution
+        </h2>
+
+        <p>
+            Promptify AI focuses on a common challenge:
+            knowing what you want but not knowing how to structure it.
+        </p>
+
+    </div>
+
+
+    <div class="problem-solution">
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                ⚠️
+            </div>
+
+            <h3>
+                The Problem
+            </h3>
+
+            <p>
+                Users often have a basic idea but struggle to
+                turn that idea into a complete and organized
+                prompt or explanation.
+            </p>
+
+            <ul>
+
+                <li>
+                    Difficulty writing detailed prompts
+                </li>
+
+                <li>
+                    Lack of knowledge about prompt structure
+                </li>
+
+                <li>
+                    Difficulty organizing important points
+                </li>
+
+                <li>
+                    Beginners may not know what information to include
+                </li>
+
+                <li>
+                    Creating structured content can take extra time
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                💡
+            </div>
+
+            <h3>
+                The Solution
+            </h3>
+
+            <p>
+                Promptify AI provides a simple workflow that
+                starts with the user's own words and converts
+                them into organized content.
+            </p>
+
+            <ul>
+
+                <li>
+                    Enter an idea in natural language
+                </li>
+
+                <li>
+                    Select the required purpose
+                </li>
+
+                <li>
+                    Generate a structured prompt
+                </li>
+
+                <li>
+                    Receive an easy-to-understand description
+                </li>
+
+                <li>
+                    Improve, copy or reuse the generated result
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     WHAT IT PROVIDES
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            What Promptify AI Provides
+        </h2>
+
+        <p>
+            The platform focuses on making the idea creation
+            process more structured and accessible.
+        </p>
+
+    </div>
+
+
+    <div class="capability-grid">
+
+
+        <div class="capability">
+
+            <div class="capability-icon">
+                ✨
+            </div>
+
+            <h3>
+                Detailed Prompts
+            </h3>
+
+            <p>
+                A simple idea can be converted into a structured
+                prompt containing important instructions,
+                concepts, examples, applications and other
+                relevant sections.
+            </p>
+
+        </div>
+
+
+        <div class="capability">
+
+            <div class="capability-icon">
+                💡
+            </div>
+
+            <h3>
+                Impactful Descriptions
+            </h3>
+
+            <p>
+                The platform provides a clear explanation of
+                the topic so that users can understand its
+                meaning, working, applications, benefits and
+                limitations.
+            </p>
+
+        </div>
+
+
+        <div class="capability">
+
+            <div class="capability-icon">
+                🎓
+            </div>
+
+            <h3>
+                Purpose Selection
+            </h3>
+
+            <p>
+                Users can choose a purpose such as college,
+                school, assignment, presentation, exam or
+                technical learning according to their needs.
+            </p>
+
+        </div>
+
+
+        <div class="capability">
+
+            <div class="capability-icon">
+                    🔄
+            </div>
+
+            <h3>
+                Result Improvement
+            </h3>
+
+            <p>
+                Generated content can be adjusted using options
+                such as regenerate, make simpler and make
+                detailed.
+            </p>
+
+        </div>
+
+
+        <div class="capability">
+
+            <div class="capability-icon">
+                📋
+            </div>
+
+            <h3>
+                Easy Copying
+            </h3>
+
+            <p>
+                Users can quickly copy the generated prompt
+                or description and use it in their assignments,
+                projects, presentations or other work.
+            </p>
+
+        </div>
+
+
+        <div class="capability">
+
+            <div class="capability-icon">
+                🚀
+            </div>
+
+            <h3>
+                Ready Examples
+            </h3>
+
+            <p>
+                Users can explore example topics and directly
+                use an example as a starting point for creating
+                their own result.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     WHO CAN USE IT
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Who Can Use Promptify AI?
+        </h2>
+
+        <p>
+            The platform is designed to remain useful for
+            different types of users.
+        </p>
+
+    </div>
+
+
+    <div class="users-section">
+
+        <div class="users-grid">
+
+
+            <div class="user-card">
+
+                <div class="user-icon">
+                    🎓
+                </div>
+
+                <h4>
+                    Students
+                </h4>
+
+                <p>
+                    For assignments, projects,
+                    presentations and exam preparation.
+                </p>
+
+            </div>
+
+
+            <div class="user-card">
+
+                <div class="user-icon">
+                    💻
+                </div>
+
+                <h4>
+                    Beginners
+                </h4>
+
+                <p>
+                    For learning how to structure
+                    ideas and questions.
+                </p>
+
+            </div>
+
+
+            <div class="user-card">
+
+                <div class="user-icon">
+                    👨‍💻
+                </div>
+
+                <h4>
+                    Tech Learners
+                </h4>
+
+                <p>
+                    For technical concepts,
+                    programming and project ideas.
+                </p>
+
+            </div>
+
+
+            <div class="user-card">
+
+                <div class="user-icon">
+                    🌐
+                </div>
+
+                <h4>
+                    General Users
+                </h4>
+
+                <p>
+                    For anyone who wants to turn
+                    a basic idea into structured content.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     COMPLETE WORKFLOW
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            From Idea To Result
+        </h2>
+
+        <p>
+            A simple workflow keeps the entire experience easy to understand.
+        </p>
+
+    </div>
+
+
+    <div class="workflow">
+
+
+        <div class="workflow-item">
+
+            <div class="workflow-number">
+                01
+            </div>
+
+            <h4>
+                Write
+            </h4>
+
+            <p>
+                Enter your idea in your own words.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-item">
+
+            <div class="workflow-number">
+                02
+            </div>
+
+            <h4>
+                Choose
+            </h4>
+
+            <p>
+                Select the purpose of your content.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-item">
+
+            <div class="workflow-number">
+                03
+            </div>
+
+            <h4>
+                Generate
+            </h4>
+
+            <p>
+                Create a detailed prompt and description.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-item">
+
+            <div class="workflow-number">
+                04
+            </div>
+
+            <h4>
+                Improve
+            </h4>
+
+            <p>
+                Copy, simplify, detail or regenerate.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FUTURE VISION
+========================= -->
+
+<section class="section">
+
+    <div class="vision">
+
+
+        <div class="vision-main">
+
+            <h2>
+                Our Vision
+            </h2>
+
+            <p>
+                The vision of Promptify AI is to make structured
+                idea creation easier for people who may not have
+                advanced knowledge of prompt engineering.
+            </p>
+
+            <div class="vision-list">
+
+                <div>
+                    <span>✓</span>
+                    Make prompt creation easier
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Encourage better structured thinking
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Support students and beginners
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Make content creation more accessible
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="vision-side">
+
+            <h3>
+                Future Scope
+            </h3>
+
+            <p>
+                Promptify AI can be expanded with more advanced
+                AI capabilities in the future. The platform can
+                potentially support more personalized results,
+                additional content formats and smarter
+                topic-specific generation.
+            </p>
+
+            <p>
+                Future versions could also include more purpose
+                categories, multilingual support, improved
+                customization and integration with external
+                AI services.
+            </p>
+
+            <p>
+                These possibilities can help transform Promptify AI
+                from a simple idea-structuring tool into a broader
+                platform for intelligent content creation.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+    <h2>
+        Your Idea Is The Starting Point.
+    </h2>
+
+    <p>
+        You don't need perfect words or advanced prompt-writing
+        knowledge. Start with what you know and let Promptify AI
+        help structure it into something more useful.
+    </p>
+
+    <a href="generator.html" class="cta-btn">
+        ✨ Start Creating
+    </a>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        PromptifyAI
+    </div>
+
+    <p>
+        Simple Idea. Impactful Description.
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   CARD ANIMATION
+========================= */
+
+const cards =
+document.querySelectorAll(
+    ".info-card, .capability, .user-card, .workflow-item"
+);
+
+
+const observer =
+new IntersectionObserver(
+
+    function(entries){
+
+        entries.forEach(function(entry){
+
+            if(entry.isIntersecting){
+
+                entry.target.style.opacity = "1";
+
+                entry.target.style.transform =
+                    "translateY(0)";
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:0.12
+    }
+
+);
+
+
+cards.forEach(function(card){
+
+    card.style.opacity = "0";
+
+    card.style.transform = "translateY(25px)";
+
+    card.style.transition =
+        "opacity .7s ease, transform .7s ease";
+
+    observer.observe(card);
+
+});
+
+
+/* =========================
+   HOVER EFFECT
+========================= */
+
+document.querySelectorAll(
+    ".info-card, .capability"
+).forEach(function(card){
+
+    card.addEventListener(
+        "mousemove",
+        function(e){
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                e.clientX - rect.left;
+
+            const y =
+                e.clientY - rect.top;
+
+            const rotateX =
+                ((y / rect.height) - .5) * -1.5;
+
+            const rotateY =
+                ((x / rect.width) - .5) * 1.5;
+
+            card.style.transform =
+                `perspective(800px)
+                 rotateX(${rotateX}deg)
+                 rotateY(${rotateY}deg)
+                 translateY(-6px)`;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        function(){
+
+            card.style.transform =
+                "translateY(-6px)";
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>

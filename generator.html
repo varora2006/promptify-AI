@@ -1,0 +1,2401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Promptify AI | Generator</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Times New Roman",serif;
+
+    background:
+        radial-gradient(circle at 20% 20%,rgba(180,120,255,.25),transparent 30%),
+        radial-gradient(circle at 80% 30%,rgba(130,90,255,.20),transparent 30%),
+        linear-gradient(135deg,#f7f1ff,#eee4ff,#f8f3ff);
+
+    color:#24133d;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND ORBS
+===================================================== */
+
+.orb{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(5px);
+    opacity:.45;
+    z-index:-1;
+    animation:float 8s ease-in-out infinite;
+}
+
+.orb1{
+    width:280px;
+    height:280px;
+    background:#c59cff;
+    top:80px;
+    left:-100px;
+}
+
+.orb2{
+    width:350px;
+    height:350px;
+    background:#a978ff;
+    right:-130px;
+    top:300px;
+    animation-delay:2s;
+}
+
+.orb3{
+    width:220px;
+    height:220px;
+    background:#dfc5ff;
+    bottom:30px;
+    left:40%;
+    animation-delay:4s;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0) translateX(0);
+    }
+
+    50%{
+        transform:translateY(-30px) translateX(20px);
+    }
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+nav{
+    width:92%;
+    margin:20px auto;
+    padding:16px 28px;
+
+    background:rgba(255,255,255,.45);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.7);
+    border-radius:20px;
+
+    box-shadow:0 10px 35px rgba(86,45,130,.12);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:sticky;
+    top:15px;
+    z-index:100;
+}
+
+.logo{
+    font-family:Algerian,"Arial Black",sans-serif;
+    font-size:25px;
+    color:#5e2a91;
+    letter-spacing:1px;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#3d2755;
+    font-weight:bold;
+    font-size:16px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#7b3fc6;
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    width:90%;
+    margin:80px auto 60px;
+    text-align:center;
+    animation:fadeUp 1s ease;
+}
+
+.hero-badge{
+    display:inline-block;
+
+    padding:8px 18px;
+    border-radius:30px;
+
+    background:rgba(255,255,255,.55);
+    border:1px solid rgba(255,255,255,.8);
+
+    color:#713ca8;
+    font-weight:bold;
+
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-family:Algerian,"Arial Black",sans-serif;
+    font-size:52px;
+    color:#51217e;
+    line-height:1.15;
+}
+
+.hero h1 span{
+    color:#8b4bd1;
+}
+
+.hero p{
+    max-width:750px;
+    margin:20px auto;
+
+    font-size:20px;
+    line-height:1.7;
+
+    color:#59476b;
+}
+
+
+/* =====================================================
+   GENERATOR
+===================================================== */
+
+.generator{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+}
+
+.card{
+    background:rgba(255,255,255,.48);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.8);
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 15px 45px rgba(83,45,120,.14);
+
+    animation:fadeUp .8s ease;
+}
+
+.card h2{
+    font-family:Algerian,"Arial Black",sans-serif;
+    color:#5c278d;
+    margin-bottom:12px;
+}
+
+.card-subtitle{
+    color:#6d5a7d;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+textarea{
+    width:100%;
+    height:180px;
+    resize:none;
+
+    border:2px solid #dfccf4;
+    border-radius:18px;
+
+    padding:18px;
+
+    font-family:"Times New Roman",serif;
+    font-size:17px;
+
+    background:rgba(255,255,255,.7);
+    color:#342044;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+textarea:focus{
+    border-color:#9454d1;
+
+    box-shadow:
+        0 0 0 4px rgba(148,84,209,.1);
+}
+
+.counter{
+    text-align:right;
+    font-size:13px;
+    color:#806b91;
+    margin-top:5px;
+}
+
+
+/* =====================================================
+   PURPOSE
+===================================================== */
+
+.purpose-title{
+    margin:22px 0 12px;
+
+    font-weight:bold;
+    color:#4b3260;
+}
+
+.purpose{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.purpose button{
+    padding:11px 8px;
+
+    border:none;
+    border-radius:12px;
+
+    background:rgba(255,255,255,.75);
+    color:#5a3678;
+
+    font-family:"Times New Roman",serif;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    border:1px solid #e0cdf4;
+}
+
+.purpose button:hover{
+    transform:translateY(-3px);
+    background:#ead9ff;
+}
+
+.purpose button.active{
+    background:
+        linear-gradient(135deg,#7b3fc6,#a968df);
+
+    color:white;
+
+    box-shadow:
+        0 7px 18px rgba(112,55,166,.25);
+}
+
+
+/* =====================================================
+   GENERATE BUTTON
+===================================================== */
+
+.generate-btn{
+    width:100%;
+    margin-top:22px;
+
+    padding:16px;
+
+    border:none;
+    border-radius:15px;
+
+    background:
+        linear-gradient(135deg,#65319a,#a052d4);
+
+    color:white;
+
+    font-family:"Times New Roman",serif;
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 25px rgba(100,48,150,.25);
+
+    transition:.3s;
+}
+
+.generate-btn:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 14px 30px rgba(100,48,150,.35);
+}
+
+
+/* =====================================================
+   RESULT HEADER
+===================================================== */
+
+.preview-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.status{
+    padding:6px 12px;
+
+    background:#eadcff;
+    color:#7139a0;
+
+    border-radius:20px;
+
+    font-size:13px;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+    min-height:350px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    color:#806c90;
+}
+
+.empty-icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.empty h3{
+    margin-bottom:8px;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+    display:none;
+
+    min-height:350px;
+
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
+
+    text-align:center;
+}
+
+.spinner{
+    width:55px;
+    height:55px;
+
+    border:5px solid #e3d2f4;
+    border-top-color:#803dc1;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+    margin-bottom:15px;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =====================================================
+   RESULTS
+===================================================== */
+
+.results{
+    display:none;
+}
+
+
+/* EACH RESULT IS SEPARATE */
+
+.result-box{
+    margin-bottom:25px;
+}
+
+.result-title{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:9px;
+}
+
+.result-title h3{
+    color:#5b2989;
+    font-size:20px;
+}
+
+.copy-btn{
+    border:none;
+
+    background:#eadcff;
+    color:#67389b;
+
+    padding:7px 12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-family:"Times New Roman",serif;
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.copy-btn:hover{
+    background:#d9bcf6;
+    transform:translateY(-2px);
+}
+
+.result-content{
+    background:rgba(255,255,255,.7);
+
+    border:1px solid #dfcdf0;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    line-height:1.75;
+
+    color:#40304e;
+
+    white-space:pre-line;
+
+    max-height:550px;
+
+    overflow-y:auto;
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+.actions{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.action-btn{
+    border:none;
+
+    padding:12px 8px;
+
+    border-radius:12px;
+
+    background:#f0e4fc;
+
+    color:#633796;
+
+    font-family:"Times New Roman",serif;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.action-btn:hover{
+    background:#dfc8f6;
+
+    transform:translateY(-3px);
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section{
+    width:90%;
+    max-width:1200px;
+
+    margin:100px auto;
+}
+
+.section-heading{
+    text-align:center;
+
+    margin-bottom:40px;
+}
+
+.section-heading h2{
+    font-family:Algerian,"Arial Black",sans-serif;
+
+    font-size:38px;
+
+    color:#56247f;
+}
+
+.section-heading p{
+    margin-top:10px;
+
+    color:#725e82;
+
+    font-size:18px;
+
+    line-height:1.7;
+}
+
+
+/* =====================================================
+   FEATURES / STEPS
+===================================================== */
+
+.steps{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:25px;
+}
+
+.step{
+    text-align:center;
+
+    padding:30px 20px;
+
+    background:rgba(255,255,255,.48);
+
+    border:1px solid rgba(255,255,255,.8);
+
+    border-radius:22px;
+
+    transition:.3s;
+}
+
+.step:hover{
+    transform:translateY(-7px);
+}
+
+.step-number{
+    width:55px;
+    height:55px;
+
+    margin:0 auto 15px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(135deg,#7136a8,#a45cda);
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:bold;
+}
+
+.step h3{
+    color:#5d2b88;
+    margin-bottom:10px;
+}
+
+.step p{
+    color:#695578;
+    line-height:1.6;
+}
+
+
+/* =====================================================
+   EXAMPLES
+===================================================== */
+
+.examples{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:18px;
+}
+
+.example-card{
+    padding:25px 15px;
+
+    background:rgba(255,255,255,.5);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.8);
+
+    border-radius:20px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+    box-shadow:
+        0 10px 25px rgba(80,40,120,.1);
+}
+
+.example-card:hover{
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+    box-shadow:
+        0 18px 35px rgba(80,40,120,.18);
+}
+
+.example-icon{
+    font-size:40px;
+
+    margin-bottom:12px;
+}
+
+.example-card h3{
+    color:#5a2d86;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    margin-top:100px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    background:rgba(80,40,120,.08);
+
+    color:#634b73;
+}
+
+footer h2{
+    font-family:Algerian,"Arial Black",sans-serif;
+
+    color:#5b2889;
+
+    margin-bottom:8px;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+    .generator{
+        grid-template-columns:1fr;
+    }
+
+    .examples{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .purpose{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .actions{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .steps{
+        grid-template-columns:1fr;
+    }
+
+    .examples{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav>
+
+    <div class="logo">
+        Promptify AI
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#features">Features</a>
+        </li>
+
+        <li>
+            <a href="#how">How It Works</a>
+        </li>
+
+        <li>
+            <a href="#examples">Examples</a>
+        </li>
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+        <li>
+            <a href="#generator">Try Generator</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-badge">
+        ✨ AI Powered Prompt Generator
+    </div>
+
+    <h1>
+        Turn Your Simple Idea
+        <br>
+        Into <span>Better Results</span>
+    </h1>
+
+    <p>
+        Enter your simple idea and Promptify AI transforms it
+        into a clear, detailed and impactful prompt with a
+        meaningful description.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     GENERATOR
+===================================================== -->
+
+<section class="generator" id="generator">
+
+
+    <!-- LEFT CARD -->
+
+    <div class="card">
+
+        <h2>
+            Create Your Prompt
+        </h2>
+
+        <p class="card-subtitle">
+            Write your idea in simple words and let Promptify AI
+            improve it for you.
+        </p>
+
+
+        <textarea
+            id="topic"
+            maxlength="500"
+            placeholder="Example: Machine Learning in healthcare..."
+        ></textarea>
+
+
+        <div class="counter">
+
+            <span id="count">0</span>/500
+
+        </div>
+
+
+        <div class="purpose-title">
+            Choose Your Purpose
+        </div>
+
+
+        <div class="purpose">
+
+            <button
+                class="active"
+                onclick="selectPurpose(this,'College')">
+
+                🎓 College
+
+            </button>
+
+
+            <button
+                onclick="selectPurpose(this,'School')">
+
+                🏫 School
+
+            </button>
+
+
+            <button
+                onclick="selectPurpose(this,'Technical')">
+
+                💻 Technical
+
+            </button>
+
+
+            <button
+                onclick="selectPurpose(this,'Assignment')">
+
+                📝 Assignment
+
+            </button>
+
+
+            <button
+                onclick="selectPurpose(this,'Presentation')">
+
+                📊 Presentation
+
+            </button>
+
+
+            <button
+                onclick="selectPurpose(this,'Project')">
+
+                🚀 Project
+
+            </button>
+
+        </div>
+
+
+        <button
+            class="generate-btn"
+            onclick="generate()">
+
+            ✨ Generate Result
+
+        </button>
+
+    </div>
+
+
+    <!-- RIGHT CARD -->
+
+    <div class="card">
+
+        <div class="preview-header">
+
+            <h2>
+                Your Result
+            </h2>
+
+            <span class="status">
+                AI READY
+            </span>
+
+        </div>
+
+
+        <!-- EMPTY -->
+
+        <div
+            class="empty"
+            id="empty">
+
+            <div class="empty-icon">
+                💡
+            </div>
+
+            <h3>
+                Your result will appear here
+            </h3>
+
+            <p>
+                Enter an idea and click Generate Result.
+            </p>
+
+        </div>
+
+
+        <!-- LOADING -->
+
+        <div
+            class="loading"
+            id="loading">
+
+            <div class="spinner"></div>
+
+            <h3>
+                Creating your result...
+            </h3>
+
+            <p>
+                Promptify AI is improving your idea.
+            </p>
+
+        </div>
+
+
+        <!-- RESULTS -->
+
+        <div
+            class="results"
+            id="results">
+
+
+            <!-- DETAILED PROMPT -->
+
+            <div class="result-box">
+
+                <div class="result-title">
+
+                    <h3>
+                        Detailed Prompt
+                    </h3>
+
+                    <button
+                        class="copy-btn"
+                        onclick="copyPrompt()">
+
+                        📋 Copy
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="result-content"
+                    id="promptResult">
+                </div>
+
+            </div>
+
+
+            <!-- SEPARATE DESCRIPTION -->
+
+            <div class="result-box">
+
+                <div class="result-title">
+
+                    <h3>
+                        Impactful Description
+                    </h3>
+
+                    <button
+                        class="copy-btn"
+                        onclick="copyDescription()">
+
+                        📋 Copy
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="result-content"
+                    id="descriptionResult">
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="actions">
+
+
+                <button
+                    class="action-btn"
+                    onclick="regenerate()">
+
+                    🔄 Regenerate
+
+                </button>
+
+
+                <button
+                    class="action-btn"
+                    onclick="makeSimple()">
+
+                    🌱 Simple Explanation
+
+                </button>
+
+
+                <button
+                    class="action-btn"
+                    onclick="makeDetailed()">
+
+                    🔥 Detailed Explanation
+
+                </button>
+
+
+                <button
+                    class="action-btn"
+                    onclick="makeCollege()">
+
+                    🎓 College Presentation
+
+                </button>
+
+
+                <button
+                    class="action-btn"
+                    onclick="makeSchool()">
+
+                    🏫 School Presentation
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section
+    class="section"
+    id="features">
+
+    <div class="section-heading">
+
+        <h2>
+            Powerful Features
+        </h2>
+
+        <p>
+            Everything you need to turn simple ideas into useful content.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                ✨
+            </div>
+
+            <h3>
+                Smart Generation
+            </h3>
+
+            <p>
+                Converts a basic idea into a clear,
+                detailed and meaningful prompt.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                🎯
+            </div>
+
+            <h3>
+                Multiple Purposes
+            </h3>
+
+            <p>
+                Generate content for college, school,
+                assignments, presentations, projects and
+                technical work.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                📋
+            </div>
+
+            <h3>
+                Easy Copy
+            </h3>
+
+            <p>
+                Copy your generated prompt or description
+                instantly.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section
+    class="section"
+    id="how">
+
+    <div class="section-heading">
+
+        <h2>
+            How It Works
+        </h2>
+
+        <p>
+            Three simple steps to create a better result.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <h3>
+                Enter Your Idea
+            </h3>
+
+            <p>
+                Write your topic or idea in simple words.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <h3>
+                Select Purpose
+            </h3>
+
+            <p>
+                Choose your required purpose such as
+                college, school, project or presentation.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h3>
+                Get Your Result
+            </h3>
+
+            <p>
+                Receive a detailed prompt and a complete
+                impactful description.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EXAMPLES
+===================================================== -->
+
+<section
+    class="section"
+    id="examples">
+
+    <div class="section-heading">
+
+        <h2>
+            Try Examples
+        </h2>
+
+        <p>
+            Click any example to use it instantly.
+        </p>
+
+    </div>
+
+
+    <div class="examples">
+
+
+        <div
+            class="example-card"
+            onclick="useExample('Machine Learning in Healthcare')">
+
+            <div class="example-icon">
+                🤖
+            </div>
+
+            <h3>
+                Machine Learning
+            </h3>
+
+        </div>
+
+
+        <div
+            class="example-card"
+            onclick="useExample('Artificial Intelligence')">
+
+            <div class="example-icon">
+                🧠
+            </div>
+
+            <h3>
+                Artificial Intelligence
+            </h3>
+
+        </div>
+
+
+        <div
+            class="example-card"
+            onclick="useExample('Data Science')">
+
+            <div class="example-icon">
+                📊
+            </div>
+
+            <h3>
+                Data Science
+            </h3>
+
+        </div>
+
+
+        <div
+            class="example-card"
+            onclick="useExample('Cybersecurity')">
+
+            <div class="example-icon">
+                🔐
+            </div>
+
+            <h3>
+                Cybersecurity
+            </h3>
+
+        </div>
+
+
+        <div
+            class="example-card"
+            onclick="useExample('Python Programming')">
+
+            <div class="example-icon">
+                🐍
+            </div>
+
+            <h3>
+                Python
+            </h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    class="section"
+    id="about">
+
+    <div class="section-heading">
+
+        <h2>
+            About Promptify AI
+        </h2>
+
+        <p>
+
+            Promptify AI is designed to make prompt creation
+            simple for students, beginners and everyday users.
+            Users can enter a simple idea and receive a clearer,
+            detailed and impactful version without needing
+            advanced prompt-writing knowledge.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <h2>
+        Promptify AI
+    </h2>
+
+    <p>
+        Simple Idea • Impactful Description
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 Promptify AI
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let purpose = "College";
+
+let mode = "normal";
+
+let lastTopic = "";
+
+
+/* =====================================================
+   CHARACTER COUNTER
+===================================================== */
+
+document
+    .getElementById("topic")
+    .addEventListener("input",function(){
+
+        document.getElementById("count").innerText =
+            this.value.length;
+
+        localStorage.setItem(
+            "promptifyTopic",
+            this.value
+        );
+
+    });
+
+
+/* =====================================================
+   PURPOSE
+===================================================== */
+
+function selectPurpose(button,value){
+
+    document
+        .querySelectorAll(".purpose button")
+        .forEach(function(btn){
+
+            btn.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+
+    purpose = value;
+
+}
+
+
+/* =====================================================
+   GENERATE
+===================================================== */
+
+function generate(){
+
+    const topic =
+        document.getElementById("topic")
+        .value
+        .trim();
+
+
+    if(!topic){
+
+        alert("Please enter your idea first.");
+
+        document
+            .getElementById("topic")
+            .focus();
+
+        return;
+
+    }
+
+
+    lastTopic = topic;
+
+    mode = "normal";
+
+    showLoading();
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+function showLoading(){
+
+    document
+        .getElementById("empty")
+        .style.display = "none";
+
+
+    document
+        .getElementById("results")
+        .style.display = "none";
+
+
+    document
+        .getElementById("loading")
+        .style.display = "flex";
+
+
+    setTimeout(function(){
+
+        createResult();
+
+    },700);
+
+}
+
+
+/* =====================================================
+   CREATE RESULT
+===================================================== */
+
+function createResult(){
+
+    const topic =
+        lastTopic ||
+        document
+            .getElementById("topic")
+            .value
+            .trim();
+
+
+    if(!topic) return;
+
+
+    let promptText = "";
+
+    let descriptionText = "";
+
+
+    if(mode === "normal"){
+
+        promptText =
+            createDetailedPrompt(topic);
+
+        descriptionText =
+            createDetailedDescription(topic);
+
+    }
+
+
+    else if(mode === "simple"){
+
+        promptText =
+            createSimplePrompt(topic);
+
+        descriptionText =
+            createSimpleDescription(topic);
+
+    }
+
+
+    else if(mode === "detailed"){
+
+        promptText =
+            createDetailedPrompt(topic);
+
+        descriptionText =
+            createDetailedDescription(topic);
+
+    }
+
+
+    else if(mode === "college"){
+
+        promptText =
+            createCollegePrompt(topic);
+
+        descriptionText =
+            createCollegeDescription(topic);
+
+    }
+
+
+    else if(mode === "school"){
+
+        promptText =
+            createSchoolPrompt(topic);
+
+        descriptionText =
+            createSchoolDescription(topic);
+
+    }
+
+
+    document
+        .getElementById("promptResult")
+        .innerText = promptText;
+
+
+    document
+        .getElementById("descriptionResult")
+        .innerText = descriptionText;
+
+
+    document
+        .getElementById("loading")
+        .style.display = "none";
+
+
+    document
+        .getElementById("results")
+        .style.display = "block";
+
+}
+
+
+/* =====================================================
+   DETAILED PROMPT
+===================================================== */
+
+function createDetailedPrompt(topic){
+
+    return `Create a comprehensive ${purpose}-level explanation and presentation-ready content on "${topic}". Cover the introduction, definition and meaning, background and history, objectives, important concepts, major types or categories, key components, how the topic works step-by-step, methods or processes, practical examples, real-world applications, advantages, limitations, challenges, importance, current relevance, future scope and conclusion. Explain every section clearly with meaningful information rather than only listing points. Use simple but professional language, logical headings, relevant examples and a well-organized structure suitable for ${purpose} use.`;
+
+}
+
+
+/* =====================================================
+   DETAILED DESCRIPTION
+===================================================== */
+
+function createDetailedDescription(topic){
+
+return `DETAILED EXPLANATION OF ${topic.toUpperCase()}
+
+
+1. INTRODUCTION
+
+${topic} is an important topic that can be understood by studying its meaning, purpose, working process and practical importance. It may be connected with academic learning, technology, business, research or everyday life depending on its application. A proper introduction gives the reader a basic understanding of what the topic is and why it deserves attention.
+
+
+2. MEANING AND DEFINITION
+
+The meaning of ${topic} explains the basic idea represented by the topic. The definition gives a clear and understandable description of what it is, what it does and what purpose it serves. Understanding the definition is important because it creates the foundation for learning the remaining concepts.
+
+
+3. BACKGROUND AND HISTORY
+
+The background of ${topic} explains how the concept developed and why it became important. It may have developed because of a particular problem, requirement, discovery or technological development. Understanding its background helps explain how the topic reached its present form and how it has changed over time.
+
+
+4. OBJECTIVES
+
+The main objective of studying ${topic} is to understand its basic principles and practical use. Other objectives may include understanding how it works, identifying its important components, studying its applications, recognizing its benefits and limitations, and understanding its relevance in the current environment.
+
+
+5. KEY CONCEPTS
+
+The key concepts related to ${topic} form the foundation of the subject. These concepts include important terms, principles, ideas and processes that help explain the topic in greater depth. A clear understanding of these fundamentals makes advanced concepts easier to learn.
+
+
+6. TYPES OR CATEGORIES
+
+${topic} may be divided into different types or categories depending on its purpose and method of use. Each type can have different characteristics, applications and advantages. Understanding these categories helps users identify the appropriate form of the topic for a particular situation.
+
+
+7. MAIN COMPONENTS
+
+The major components of ${topic} are the individual elements that work together to achieve the intended purpose. Each component performs a particular function. Studying the components separately makes it easier to understand how the complete system, process or concept operates.
+
+
+8. HOW IT WORKS
+
+The working of ${topic} can generally be explained through a sequence of steps. First, the required information, resources or inputs are collected. These inputs are then processed according to the principles, rules or methods related to the topic. The processing produces an output, result or action. The exact working process may change according to the specific application of ${topic}.
+
+
+9. METHODS OR PROCESSES
+
+Different methods may be used to implement or study ${topic}. The choice of method depends on the purpose, available resources, requirements and expected result. Understanding these methods provides a deeper understanding of how the topic can be practically applied.
+
+
+10. PRACTICAL EXAMPLE
+
+A practical example helps connect theoretical knowledge with a real situation. For example, ${topic} can be understood through a situation where a student, organization, professional or technology uses the concept to solve a problem or achieve a specific objective. Such examples make the topic easier to understand and remember.
+
+
+11. REAL-WORLD APPLICATIONS
+
+${topic} can be applied in different real-world areas depending on its nature. It may be useful in education, healthcare, business, technology, finance, research, communication, entertainment or other professional fields. These applications demonstrate that the topic is not limited to theoretical learning and can provide practical value.
+
+
+12. ADVANTAGES
+
+• Better Understanding — Studying ${topic} provides structured knowledge about an important concept and its practical use.
+
+• Practical Application — The knowledge can be applied to real-world problems and situations.
+
+• Improved Efficiency — Appropriate use of the concept can make certain tasks or processes more organized and efficient.
+
+• Problem Solving — Understanding the topic can help users identify problems and develop suitable solutions.
+
+• Innovation — Knowledge of ${topic} can support new ideas, improvements and creative solutions.
+
+• Academic Value — The topic can be useful for assignments, presentations, projects, examinations and further learning.
+
+• Career Relevance — Depending on the field, knowledge of ${topic} can contribute to future academic and professional development.
+
+
+13. LIMITATIONS
+
+Although ${topic} has several benefits, it may also have limitations. These may include cost, complexity, lack of resources, dependence on accurate information, technical requirements, limited applicability or the need for specialized knowledge. Understanding limitations helps users apply the topic realistically and avoid unrealistic expectations.
+
+
+14. CHALLENGES
+
+The implementation or study of ${topic} may involve different challenges. These can include changing requirements, lack of knowledge, limited resources, technical difficulties, security or privacy concerns where applicable, maintenance requirements and the need for continuous learning. Proper planning and responsible implementation can help address many of these challenges.
+
+
+15. IMPORTANCE
+
+${topic} is important because it provides knowledge, methods or solutions that can be useful in academic, professional or real-world situations. Understanding the topic helps students and professionals develop a deeper understanding of related subjects and apply their knowledge more effectively.
+
+
+16. REAL-LIFE USE
+
+In real life, people may interact with applications of ${topic} without always realizing the underlying concept. Its practical use can be seen in everyday activities, professional environments, educational systems, modern technology or organizational processes. Real-life use demonstrates how theoretical knowledge can create practical value.
+
+
+17. CURRENT RELEVANCE
+
+${topic} remains relevant when it connects with current requirements, technological developments, educational needs or professional practices. Understanding its current role helps learners identify why the topic is being studied and where it is being used today.
+
+
+18. FUTURE SCOPE
+
+The future scope of ${topic} depends on new research, technological development, changing user requirements and new applications. As tools and methods improve, the topic may become useful in additional areas. Students who understand the fundamentals can continue learning advanced concepts and explore new opportunities related to the field.
+
+
+19. CONCLUSION
+
+In conclusion, ${topic} can be properly understood by studying its meaning, background, objectives, concepts, types, components, working process, methods, applications, advantages, limitations and future scope. A complete understanding should connect theoretical information with practical examples and real-world applications. This makes the topic more meaningful, easier to remember and more useful for academic as well as professional learning.`;
+
+}
+
+
+/* =====================================================
+   SIMPLE PROMPT
+===================================================== */
+
+function createSimplePrompt(topic){
+
+return `Explain "${topic}" for a ${purpose} audience using simple and easy-to-understand language. Explain its basic meaning, main idea, how it works, important points, simple examples, practical uses, benefits, limitations and conclusion. Avoid unnecessary technical complexity and make the explanation suitable for beginners.`;
+
+}
+
+
+/* =====================================================
+   SIMPLE DESCRIPTION
+===================================================== */
+
+function createSimpleDescription(topic){
+
+return `SIMPLE EXPLANATION OF ${topic.toUpperCase()}
+
+
+• Meaning
+
+${topic} is a concept that can be understood by first learning what it means and what purpose it serves.
+
+
+• Main Idea
+
+The main idea behind ${topic} is to understand its basic purpose and how it can be used in practical situations.
+
+
+• How It Works
+
+The basic working of ${topic} involves using certain information, processes or methods to achieve a useful result.
+
+
+• Example
+
+A simple real-life example can make ${topic} easier to understand by connecting the concept with something familiar.
+
+
+• Uses
+
+${topic} can be useful in different academic, technical or real-world situations depending on its application.
+
+
+• Benefits
+
+Understanding ${topic} can help improve knowledge, problem-solving ability and practical understanding.
+
+
+• Conclusion
+
+Learning the basic concepts of ${topic} provides a foundation for exploring more advanced information later.`;
+
+}
+
+
+/* =====================================================
+   COLLEGE PROMPT
+===================================================== */
+
+function createCollegePrompt(topic){
+
+return `Create a professional college-level presentation and detailed academic explanation on "${topic}". Include introduction, definition, background and history, objectives, key concepts, types, components, working process, methodology, practical examples, real-world applications, advantages, limitations, challenges, importance, current relevance, future scope and conclusion. Explain every section clearly and provide meaningful information suitable for a college presentation, assignment or academic project.`;
+
+}
+
+
+/* =====================================================
+   COLLEGE DESCRIPTION
+===================================================== */
+
+function createCollegeDescription(topic){
+
+return `COLLEGE PRESENTATION CONTENT — ${topic.toUpperCase()}
+
+
+1. INTRODUCTION
+
+${topic} is an important academic and practical topic. The introduction should explain what the topic is, why it is relevant and how it connects with the field in which it is being studied.
+
+
+2. DEFINITION AND MEANING
+
+The definition provides a clear explanation of ${topic}. Understanding the basic meaning helps students build a strong foundation before moving towards advanced concepts.
+
+
+3. BACKGROUND
+
+The background explains how ${topic} developed, what requirements or problems contributed to its development and how its role has changed over time.
+
+
+4. OBJECTIVES
+
+The main objectives are to understand the concept, study its working process, identify its applications, understand its benefits and limitations and connect academic knowledge with practical situations.
+
+
+5. KEY CONCEPTS
+
+The key concepts provide the theoretical foundation required to understand ${topic}. These include important terms, principles, processes and ideas associated with the subject.
+
+
+6. TYPES AND COMPONENTS
+
+Different types of ${topic} may exist depending on their purpose and application. Its components work together to achieve the intended result, with each component performing a specific role.
+
+
+7. WORKING PROCESS
+
+The working process explains how ${topic} operates from input to final result. Understanding the process helps students connect theoretical information with practical implementation.
+
+
+8. PRACTICAL EXAMPLE
+
+A practical example demonstrates how ${topic} can be used in a real situation. Examples make academic concepts easier to understand and explain during a presentation.
+
+
+9. APPLICATIONS
+
+${topic} can have applications in different industries, academic areas and professional environments. These applications demonstrate the practical importance of the topic.
+
+
+10. ADVANTAGES
+
+The major advantages can include improved efficiency, better understanding, problem-solving support, practical usefulness, innovation and opportunities for further development.
+
+
+11. LIMITATIONS
+
+Possible limitations may include cost, complexity, resource requirements, technical difficulties, dependence on accurate information and limited applicability in certain situations.
+
+
+12. CHALLENGES
+
+Challenges may involve implementation difficulties, changing requirements, limited resources, lack of awareness, technical issues and the need for continuous learning.
+
+
+13. IMPORTANCE
+
+Understanding ${topic} is important for students because it develops academic knowledge while also providing a foundation for practical projects, research and future professional learning.
+
+
+14. CURRENT RELEVANCE
+
+The current relevance of ${topic} depends on how it is being used today and how it connects with modern academic, technological or professional requirements.
+
+
+15. FUTURE SCOPE
+
+Future development of ${topic} may be influenced by research, innovation, technological improvements and changing requirements. Students can use their basic knowledge as a foundation for advanced learning.
+
+
+16. CONCLUSION
+
+${topic} is a valuable subject that becomes easier to understand when theoretical concepts are connected with practical examples. A complete academic presentation should cover its meaning, background, objectives, concepts, working, applications, advantages, limitations and future scope.`;
+
+}
+
+
+/* =====================================================
+   SCHOOL PROMPT
+===================================================== */
+
+function createSchoolPrompt(topic){
+
+return `Create an engaging school-level explanation and presentation on "${topic}". Explain the meaning, background, important facts, basic concepts, types where applicable, simple working process, everyday examples, uses, advantages, limitations, importance, future scope and conclusion. Use simple language, short understandable sections and familiar examples so that school students can easily understand and present the topic.`;
+
+}
+
+
+/* =====================================================
+   SCHOOL DESCRIPTION
+===================================================== */
+
+function createSchoolDescription(topic){
+
+return `SCHOOL PRESENTATION CONTENT — ${topic.toUpperCase()}
+
+
+1. INTRODUCTION
+
+${topic} is a topic that can be explained in a simple and interesting way. The introduction should tell students what the topic is and why it is worth learning.
+
+
+2. MEANING
+
+The basic meaning of ${topic} explains what it is and what it is used for. Understanding this first makes the remaining topic easier.
+
+
+3. BACKGROUND
+
+The background explains how ${topic} started or developed and why people began using or studying it.
+
+
+4. IMPORTANT FACTS
+
+The important facts include the main information students should know about ${topic}. These facts help students remember the topic and explain it confidently.
+
+
+5. KEY CONCEPTS
+
+The basic concepts explain the important ideas associated with ${topic}. They provide a simple foundation for understanding the subject.
+
+
+6. TYPES
+
+If ${topic} has different types or categories, each type can be explained with its main purpose and a simple example.
+
+
+7. HOW IT WORKS
+
+The working process can be explained through simple steps so that students understand what happens and how the topic produces a result.
+
+
+8. EXAMPLE
+
+A familiar real-life example can make ${topic} easier and more interesting to understand.
+
+
+9. USES
+
+${topic} can be used in different areas depending on its purpose. Real-life uses help students connect classroom learning with the world around them.
+
+
+10. ADVANTAGES
+
+${topic} can provide benefits such as making certain activities easier, improving understanding, saving effort or helping solve problems.
+
+
+11. LIMITATIONS
+
+Like many concepts, ${topic} can also have limitations. These may include difficulties, costs, resource requirements or situations where it cannot be used effectively.
+
+
+12. IMPORTANCE
+
+Learning ${topic} helps students develop knowledge and understand how concepts learned in school can connect with real-life situations.
+
+
+13. FUTURE SCOPE
+
+The topic may become more useful in the future as knowledge, technology and applications develop.
+
+
+14. CONCLUSION
+
+In conclusion, ${topic} becomes easier to understand when students learn its meaning, background, important concepts, working, examples, uses, benefits and limitations. Connecting the topic with everyday life makes learning more interesting and meaningful.`;
+
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+function makeSimple(){
+
+    if(!checkTopic()) return;
+
+    mode = "simple";
+
+    showLoading();
+
+}
+
+
+function makeDetailed(){
+
+    if(!checkTopic()) return;
+
+    mode = "detailed";
+
+    showLoading();
+
+}
+
+
+function makeCollege(){
+
+    if(!checkTopic()) return;
+
+    mode = "college";
+
+    showLoading();
+
+}
+
+
+function makeSchool(){
+
+    if(!checkTopic()) return;
+
+    mode = "school";
+
+    showLoading();
+
+}
+
+
+function regenerate(){
+
+    if(!checkTopic()) return;
+
+    mode = "normal";
+
+    showLoading();
+
+}
+
+
+/* =====================================================
+   CHECK TOPIC
+===================================================== */
+
+function checkTopic(){
+
+    const topic =
+        document
+            .getElementById("topic")
+            .value
+            .trim();
+
+
+    if(!topic){
+
+        alert("Please enter your idea first.");
+
+        document
+            .getElementById("topic")
+            .focus();
+
+        return false;
+
+    }
+
+
+    lastTopic = topic;
+
+    return true;
+
+}
+
+
+/* =====================================================
+   COPY PROMPT
+===================================================== */
+
+function copyPrompt(){
+
+    const text =
+        document
+            .getElementById("promptResult")
+            .innerText;
+
+    copyText(text);
+
+}
+
+
+/* =====================================================
+   COPY DESCRIPTION
+===================================================== */
+
+function copyDescription(){
+
+    const text =
+        document
+            .getElementById("descriptionResult")
+            .innerText;
+
+    copyText(text);
+
+}
+
+
+/* =====================================================
+   COPY
+===================================================== */
+
+function copyText(text){
+
+    if(!text){
+
+        alert("Nothing to copy.");
+
+        return;
+
+    }
+
+
+    if(navigator.clipboard){
+
+        navigator.clipboard
+            .writeText(text)
+            .then(function(){
+
+                alert("Copied successfully! 📋");
+
+            })
+            .catch(function(){
+
+                fallbackCopy(text);
+
+            });
+
+    }
+
+    else{
+
+        fallbackCopy(text);
+
+    }
+
+}
+
+
+/* =====================================================
+   FALLBACK COPY
+===================================================== */
+
+function fallbackCopy(text){
+
+    const area =
+        document.createElement("textarea");
+
+
+    area.value = text;
+
+
+    document.body.appendChild(area);
+
+
+    area.select();
+
+
+    document.execCommand("copy");
+
+
+    document.body.removeChild(area);
+
+
+    alert("Copied successfully! 📋");
+
+}
+
+
+/* =====================================================
+   EXAMPLES
+===================================================== */
+
+function useExample(text){
+
+    const textarea =
+        document.getElementById("topic");
+
+
+    textarea.value = text;
+
+
+    document.getElementById("count").innerText =
+        text.length;
+
+
+    localStorage.setItem(
+        "promptifyTopic",
+        text
+    );
+
+
+    document
+        .getElementById("generator")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(function(link){
+
+        link.addEventListener("click",function(e){
+
+            e.preventDefault();
+
+
+            const target =
+                document.querySelector(
+                    this.getAttribute("href")
+                );
+
+
+            if(target){
+
+                target.scrollIntoView({
+                    behavior:"smooth"
+                });
+
+            }
+
+        });
+
+    });
+
+
+/* =====================================================
+   LOAD SAVED TOPIC
+===================================================== */
+
+window.addEventListener("load",function(){
+
+    const saved =
+        localStorage.getItem("promptifyTopic");
+
+
+    if(saved){
+
+        document
+            .getElementById("topic")
+            .value = saved;
+
+
+        document
+            .getElementById("count")
+            .innerText =
+                saved.length;
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>
